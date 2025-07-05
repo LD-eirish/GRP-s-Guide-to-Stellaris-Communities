@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateRankingPanel();
 });
 
-// --- Ranking Panel Toggle ---
+// --- Ranking Panel Toggle I ---
 document.addEventListener('DOMContentLoaded', () => {
     // Ranking panel toggle logic
     const rankingPanel = document.getElementById('ranking-panel');
