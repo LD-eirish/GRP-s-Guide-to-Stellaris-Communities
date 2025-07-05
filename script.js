@@ -100,7 +100,7 @@ const communities = [
         name: "Galactic Roleplayers",
         criteria: [
             "rp-focused", "large-communities", "beginner-friendly", "vanilla", "english-speaking",
-            "global-groups", "freeform", "text-based-rp", "regular-sessions", "multiple-campaigns",
+            "global-groups", "freeform", "text-based-rp", "multiple-campaigns",
             "moderate-activity", "moderate-lore", "relaxed-moderation", "weekly"
         ]
     },
@@ -108,7 +108,7 @@ const communities = [
         name: "Stellaris Tacticians",
         criteria: [
             "competitive-multiplayer", "medium-communities", "advanced-expert", "lightly-modded", "english-speaking",
-            "regional-groups", "tactical", "voice-rp", "regular-sessions", "single-campaign",
+            "regional-groups", "tactical", "voice-rp", "single-campaign",
             "high-activity", "high-lore", "strict-moderation", "multiple-a-week"
         ]
     },
@@ -116,7 +116,7 @@ const communities = [
         name: "Casual Cosmos",
         criteria: [
             "casual-multiplayer", "small-communities", "mixed-skill", "vanilla", "multilingual",
-            "global-groups", "sandbox", "text-based-rp", "irregular-sessions", "multiple-campaigns",
+            "global-groups", "sandbox", "text-based-rp", "multiple-campaigns",
             "low-activity", "low-lore", "community-guided", "monthly"
         ]
     }
