@@ -155,15 +155,14 @@ main {
 /* Description panel (now always present, but hidden by default) */
 #description-panel {
     position: fixed;
-    top: 90px;
-    right: 40px;
+    top: 100px;
+    right: 24px;
     flex: none;
-    max-width: 400px;
-    min-width: 260px;
+    width: 450px;
     background: #23272b;
     color: #eaffea;
     border-radius: 8px;
-    padding: 2rem 1.5rem;
+    padding: 1.5rem 1.5rem 2rem 1.5rem;
     font-size: 1.08rem;
     box-shadow: 0 2px 12px #0004;
     opacity: 0;
@@ -171,11 +170,12 @@ main {
     transform: translateX(40px);
     transition: opacity 0.35s cubic-bezier(.4,0,.2,1), transform 0.35s cubic-bezier(.4,0,.2,1);
     will-change: opacity, transform;
-    height: fit-content;
+    height: auto;
     display: block;
     z-index: 1200;
     visibility: hidden;
     margin: 0;
+    box-sizing: border-box;
 }
 
 #description-panel.active {
@@ -332,7 +332,10 @@ main {
 /* Responsive: stack on small screens */
 @media (max-width: 1400px) {
     #description-panel {
-        margin-left: 4rem;
+        right: 24px;
+        width: 400px;
+        max-width: 400px;
+        padding: 1.5rem 1.5rem 2rem 1.5rem;
     }
 }
 
@@ -353,10 +356,15 @@ main {
         z-index: 1;
     }
     #description-panel {
-        max-width: 100vw;
-        margin: 0 1rem 2rem 1rem;
         position: static;
+        max-width: 100vw;
+        width: 100vw;
+        margin: 0 1rem 2rem 1rem;
         z-index: 2;
+        right: auto;
+        top: auto;
+        transform: none;
+        padding: 1.2rem 0.7rem;
     }
     #ranking-panel {
         max-width: 100vw;

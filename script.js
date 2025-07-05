@@ -76,9 +76,9 @@ function showDescription(button) {
             "rp-focused": "Communities focused on role-play and collaborative storytelling.",
             "competitive-multiplayer": "Communities centered on competitive multiplayer gameplay.",
             "casual-multiplayer": "Communities for relaxed, casual multiplayer experiences.",
-            "large-communities": "Communities with a large number of active members.",
-            "medium-communities": "Communities with a moderate number of members.",
-            "small-communities": "Smaller, tight-knit communities.",
+            "large-communities": "Communities with more than 100 active members.",
+            "medium-communities": "Communities with between 50-100 active members.",
+            "small-communities": "Communities with fewer than 50 active members.",
             "exclusive-communities": "Communities with limited or invite-only membership."
         };
         desc = fallbackDescriptions[key] || '';
