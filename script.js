@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rankingBtn = document.getElementById('ranking-toggle-btn');
     let rankingVisible = false;
     function updateRankingBtn() {
-        rankingBtn.textContent = rankingVisible ? "Hide Matches" : "Show Matches";
+        rankingBtn.textContent = rankingVisible ? "Matches" : "Matches";
         rankingBtn.setAttribute('aria-expanded', rankingVisible ? 'true' : 'false');
     }
     rankingBtn.addEventListener('click', () => {
