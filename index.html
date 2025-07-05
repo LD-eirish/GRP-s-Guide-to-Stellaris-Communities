@@ -556,7 +556,7 @@
                 onclick="toggleDropdown('high-activity'); showDescription(this)"
                 onkeydown="handleKeyDown(event, 'high-activity')"
                 type="button"
-                data-description="Communities that progress quickly, ideal for those wanting frequent engagement."
+                data-description="Communities that have constant diplomatic engagement via text-based RP."
                 data-key="high-activity"
               >
                 High Activity
@@ -569,7 +569,7 @@
                 onclick="toggleDropdown('moderate-activity'); showDescription(this)"
                 onkeydown="handleKeyDown(event, 'moderate-activity')"
                 type="button"
-                data-description="Communities with steady pacing, balancing regular posts and thoughtful participation."
+                data-description="Communities with steady pacing, balancing regular text-based RP and phases of inactivity."
                 data-key="moderate-activity"
               >
                 Moderate Activity
@@ -582,7 +582,7 @@
                 onclick="toggleDropdown('low-activity'); showDescription(this)"
                 onkeydown="handleKeyDown(event, 'low-activity')"
                 type="button"
-                data-description="Communities where posts are infrequent, allowing a relaxed, long-term approach to RP."
+                data-description="Communities where players are most active around the session-day."
                 data-key="low-activity"
               >
                 Low Activity
@@ -611,7 +611,7 @@
                 onclick="toggleDropdown('high-lore'); showDescription(this)"
                 onkeydown="handleKeyDown(event, 'high-lore')"
                 type="button"
-                data-description="Communities expecting in-depth Stellaris lore knowledge and consistent canon."
+                data-description="Communities expecting in-depth lore documents for your empire."
                 data-key="high-lore"
               >
                 High Lore Demand
@@ -624,7 +624,7 @@
                 onclick="toggleDropdown('moderate-lore'); showDescription(this)"
                 onkeydown="handleKeyDown(event, 'moderate-lore')"
                 type="button"
-                data-description="Communities that value lore familiarity but allow flexible interpretations."
+                data-description="Communities that value but don't require multiple pages of established empire lore."
                 data-key="moderate-lore"
               >
                 Moderate Lore Demand
@@ -637,7 +637,7 @@
                 onclick="toggleDropdown('low-lore'); showDescription(this)"
                 onkeydown="handleKeyDown(event, 'low-lore')"
                 type="button"
-                data-description="Communities where lore is not enforced, focusing instead on creative fun."
+                data-description="Communities where lore is not enforced."
                 data-key="low-lore"
               >
                 Low Lore Demand
@@ -666,24 +666,12 @@
                 onclick="toggleDropdown('strict-moderation'); showDescription(this)"
                 onkeydown="handleKeyDown(event, 'strict-moderation')"
                 type="button"
-                data-description="Communities with clear rules and active oversight to maintain civility and order."
+                data-description="Communities where all the decision-making lies in the hosts hands."
                 data-key="strict-moderation"
               >
                 Strict Moderation
               </button>
               <div class="dropdown-content" id="strict-moderation"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="relaxed-moderation"
-                onclick="toggleDropdown('relaxed-moderation'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'relaxed-moderation')"
-                type="button"
-                data-description="Communities with light administrative involvement, relying on trust and self-control."
-                data-key="relaxed-moderation"
-              >
-                Relaxed Moderation
-              </button>
               <div class="dropdown-content" id="relaxed-moderation"></div>
               <button
                 class="dropdown-toggle"
@@ -783,6 +771,9 @@
           </section>
         </div>
         <div id="tab-content-communities" style="display:none;">
+          <h1 style="color:#ffd580; font-size:2.2em; margin-top:0.5em; margin-bottom:1em; text-align:center;">
+            NEEDS REWORK: W.I.P:
+          </h1>
           <h2>All Stellaris Communities</h2>
           <table id="communities-table">
             <thead>
