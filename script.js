@@ -67,22 +67,68 @@ function showDescription(button) {
     });
     // Add active-sub to the current button
     button.classList.add('active-sub');
-    // Try both data-description and fallback to data-key for Play Style/Community Size
-    let desc = button.getAttribute('data-description');
-    if (!desc) {
-        // Try to get a description from the key (for Play Style/Community Size)
-        const key = button.getAttribute('data-key');
-        const fallbackDescriptions = {
-            "rp-focused": "Communities focused on role-play and collaborative storytelling.",
-            "competitive-multiplayer": "Communities centered on competitive multiplayer gameplay.",
-            "casual-multiplayer": "Communities for relaxed, casual multiplayer experiences.",
-            "large-communities": "Communities with more than 100 active members.",
-            "medium-communities": "Communities with between 50-100 active members.",
-            "small-communities": "Communities with fewer than 50 active members.",
-            "exclusive-communities": "Communities with limited or invite-only membership."
-        };
-        desc = fallbackDescriptions[key] || '';
-    }
+    // Use fallbackDescriptions for all categories
+    const key = button.getAttribute('data-key');
+    const fallbackDescriptions = {
+        // Play Style
+        "rp-focused": "Communities focused on role-play and collaborative storytelling.",
+        "competitive-multiplayer": "Communities centered on competitive multiplayer gameplay.",
+        "casual-multiplayer": "Communities for relaxed, casual multiplayer experiences.",
+        // Community Size
+        "large-communities": "Communities with more than 100 active members.",
+        "medium-communities": "Communities with between 50-100 active members.",
+        "small-communities": "Communities with fewer than 50 active members.",
+        "exclusive-communities": "Communities with limited or invite-only membership.",
+        // Experience Level
+        "beginner-friendly": "Communities open to new players, offering basic guidance and a friendly learning environment.",
+        "intermediate": "Communities for players with some experience looking to improve their storytelling and skills.",
+        "advanced-expert": "Communities for veterans who prefer complex lore, deep narratives, and advanced role-play.",
+        "mixed-skill": "Communities accepting all experience levels, ensuring balanced opportunities for everyone.",
+        // Mod Usage
+        "vanilla": "Communities using only base Stellaris, with no required mods.",
+        "lightly-modded": "Communities that employ a few minor or cosmetic mods for a smoother experience.",
+        "heavily-modded": "Communities featuring extensive mod lists that add mechanics, lore, or new content.",
+        // Language
+        "english-speaking": "Communities primarily using English for role-play and general interaction.",
+        "non-english-speaking": "Communities that use languages other than English for all RP and discussions. Such as: french, spanish, german, etc.",
+        "multilingual": "Communities open to multiple languages, fostering an international environment.",
+        // Geographic Region
+        "regional-groups": "Communities organized by region or country, aligning time zones.",
+        "global-groups": "Communities uniting players worldwide.",
+        // RP Style
+        "railroad": "Communities driven by preset story arcs, guided by a game master with limited player freedom.",
+        "freeform": "Communities with minimal constraints, offering broad creative freedom for players.",
+        "sandbox": "Communities where open-ended exploration leads to emergent storytelling.",
+        "narrative-driven": "Communities emphasizing collaborative storytelling, character arcs, and plot depth.",
+        "simulationist": "Communities that focus on realism, in-universe consistency, and logical world-building.",
+        "tactical": "Communities centered on strategy, competitive elements, and in-game tactics.",
+        // Session Type
+        "voice-rp": "Communities conducting real-time sessions via voice chat for immersive interactions.",
+        "text-based-rp": "Communities using text for role-play, either in chats or forums, often asynchronously.",
+        "mixed-rp": "Communities allowing both voice and text RP, granting players flexible engagement.",
+        // Concurrent Campaigns
+        "single-campaign": "Communities with a single main campaign hosted by one organizer.",
+        "multiple-campaigns": "Communities where multiple campaigns run concurrently, often managed by different hosts.",
+        // Writing Activity and Volume
+        "high-activity": "Communities that progress quickly, ideal for those wanting frequent engagement.",
+        "moderate-activity": "Communities with steady pacing, balancing regular posts and thoughtful participation.",
+        "low-activity": "Communities where posts are infrequent, allowing a relaxed, long-term approach to RP.",
+        // Lore Requirement
+        "high-lore": "Communities expecting in-depth Stellaris lore knowledge and consistent canon.",
+        "moderate-lore": "Communities that value lore familiarity but allow flexible interpretations.",
+        "low-lore": "Communities where lore is not enforced, focusing instead on creative fun.",
+        // Moderation Style
+        "strict-moderation": "Communities with clear rules and active oversight to maintain civility and order.",
+        "relaxed-moderation": "Communities with light administrative involvement, relying on trust and self-control.",
+        "community-guided": "Communities shaped by group input, jointly managing rules and direction.",
+        // Session Frequency
+        "multiple-a-week": "Communities meeting multiple times a week for frequent engagement.",
+        "weekly": "Communities running sessions every week, keeping a predictable schedule.",
+        "bi-monthly": "Communities meeting every two weeks, striking a balance between regularity and flexibility.",
+        "monthly": "Communities scheduling one session a month, suitable for busier participants.",
+        "other-session-frequency": "Communities with alternative or irregular scheduling, such as event-based sessions."
+    };
+    let desc = fallbackDescriptions[key] || '';
     const panel = document.getElementById('description-panel');
     // Only show if any main category is expanded
     const anyExpanded = Array.from(document.querySelectorAll('.main-category')).some(btn => btn.getAttribute('aria-expanded') === 'true');
@@ -154,8 +200,10 @@ let selectedCriteria = new Set();
 function updateRankingPanel() {
     const selectedList = document.getElementById('selected-criteria');
     selectedList.innerHTML = '';
-    selectedCriteria.forEach(id => {
-        // Find the button to get the text
+    const selectedArr = Array.from(selectedCriteria);
+    const maxVisible = 5;
+
+    selectedArr.slice(0, maxVisible).forEach(id => {
         const btn = document.querySelector(`button[data-key="${id}"]`);
         const text = btn ? btn.textContent.trim() : id;
         const li = document.createElement('li');
@@ -169,6 +217,18 @@ function updateRankingPanel() {
         });
         selectedList.appendChild(li);
     });
+
+    if (selectedArr.length > maxVisible) {
+        const li = document.createElement('li');
+        li.textContent = `[+${selectedArr.length - maxVisible} more...]`;
+        li.style.cursor = 'default';
+        li.style.background = 'transparent';
+        li.style.color = '#ffd580';
+        li.style.fontWeight = 'normal';
+        li.style.border = 'none';
+        li.style.marginTop = '0.3em';
+        selectedList.appendChild(li);
+    }
 
     // Remove green border from all buttons not in selectedCriteria
     document.querySelectorAll('button[data-key]:not(.main-category)').forEach(btn => {
