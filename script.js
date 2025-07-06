@@ -367,7 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
     const rankingPanel = document.getElementById('ranking-panel');
     const rankingBtn = document.getElementById('ranking-toggle-btn');
-    let rankingVisible = false;
+    let rankingVisible = true; // Start opened
     function updateRankingBtn() {
         rankingBtn.textContent = "Matches";
         rankingBtn.setAttribute('aria-expanded', rankingVisible ? 'true' : 'false');
@@ -381,7 +381,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         updateRankingBtn();
     });
-    rankingPanel.classList.add('hide');
+    // Show panel by default
+    rankingPanel.classList.remove('hide');
     updateRankingBtn();
 });
 
