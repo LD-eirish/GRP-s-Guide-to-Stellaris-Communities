@@ -105,7 +105,7 @@ main {
     font-weight: bold;
     margin-bottom: 0.5em;
     background: linear-gradient(90deg, #23272b 80%, #4fa3ff33 100%);
-    border-left: 13px solid #4fa3ff;
+    border-left: 13px solid #4fff84;
     border-top: none;
     border-right: none;
     border-bottom: none;
@@ -374,7 +374,7 @@ main {
 }
 
 .category-option .criteria-checkbox {
-    accent-color: #4fa3ff;
+    accent-color: #27b933;
     width: 1.2em;
     height: 1.2em;
     margin: 0;
@@ -476,7 +476,6 @@ footer {
 .dropdown-toggle.dropdown-open{
     background: linear-gradient(90deg, #27313a 80%, #6be67233 100%);
     color: #ffd580 !important;
-    border-left: 3px solid #ffd700 !important;
     box-shadow: 0 4px 22px #4fa3ff44;
 }
 
