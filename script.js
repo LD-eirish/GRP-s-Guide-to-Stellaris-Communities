@@ -3,21 +3,19 @@ function toggleDropdown(id) {
     const button = document.querySelector(`button[aria-controls="${id}"]`);
     const expanded = button.getAttribute('aria-expanded') === 'true';
 
-    // If this is a main category dropdown
     if (button.classList.contains('main-category')) {
-        // Close all main category dropdowns
         document.querySelectorAll('.main-category').forEach(btn => {
             btn.setAttribute('aria-expanded', 'false');
+            btn.classList.remove('dropdown-open');
         });
         document.querySelectorAll('.category > .dropdown-content').forEach(div => {
             div.style.display = 'none';
         });
-        // Open if not already expanded
         if (!expanded) {
             button.setAttribute('aria-expanded', 'true');
             content.style.display = 'block';
+            button.classList.add('dropdown-open');
         }
-        // Hide description panel if all main categories are collapsed
         setTimeout(() => {
             const anyExpanded = Array.from(document.querySelectorAll('.main-category')).some(btn => btn.getAttribute('aria-expanded') === 'true');
             if (!anyExpanded) {
@@ -27,10 +25,12 @@ function toggleDropdown(id) {
             }
         }, 0);
     } else {
-        // Sub-category dropdowns: only close siblings, not all
         const parent = button.parentElement;
         parent.querySelectorAll('.dropdown-toggle').forEach(btn => {
-            if (btn !== button) btn.setAttribute('aria-expanded', 'false');
+            if (btn !== button) {
+                btn.setAttribute('aria-expanded', 'false');
+                btn.classList.remove('dropdown-open');
+            }
         });
         parent.querySelectorAll('.dropdown-content').forEach(div => {
             if (div !== content) div.style.display = 'none';
@@ -38,9 +38,11 @@ function toggleDropdown(id) {
         if (!expanded) {
             button.setAttribute('aria-expanded', 'true');
             content.style.display = 'block';
+            button.classList.add('dropdown-open');
         } else {
             button.setAttribute('aria-expanded', 'false');
             content.style.display = 'none';
+            button.classList.remove('dropdown-open');
         }
     }
 }
@@ -61,13 +63,21 @@ function loadDescriptions() {
 }
 
 function showDescription(button) {
-    // Remove active-sub from all sub-category buttons
-    document.querySelectorAll('.subcategory-btn.active-sub, button[data-key].active-sub').forEach(btn => {
-        btn.classList.remove('active-sub');
+    document.querySelectorAll('.subcategory-btn.active-desc').forEach(btn => {
+        btn.classList.remove('active-desc');
     });
-    // Add active-sub to the current button
-    button.classList.add('active-sub');
-    // Use fallbackDescriptions for all categories
+    document.querySelectorAll('.info-icon').forEach(icon => icon.remove());
+
+    button.classList.add('active-desc');
+    let icon = button.querySelector('.info-icon');
+    if (!icon) {
+        icon = document.createElement('span');
+        icon.className = 'info-icon';
+        icon.innerHTML = '&#9432;';
+        button.appendChild(icon);
+    }
+    icon.style.display = '';
+
     const key = button.getAttribute('data-key');
     const fallbackDescriptions = {
         // Play Style
@@ -130,7 +140,6 @@ function showDescription(button) {
     };
     let desc = fallbackDescriptions[key] || '';
     const panel = document.getElementById('description-panel');
-    // Only show if any main category is expanded
     const anyExpanded = Array.from(document.querySelectorAll('.main-category')).some(btn => btn.getAttribute('aria-expanded') === 'true');
     if (desc && anyExpanded) {
         panel.innerHTML = desc;
@@ -138,22 +147,21 @@ function showDescription(button) {
     } else {
         panel.innerHTML = '';
         panel.classList.remove('active');
+        button.classList.remove('active-desc');
+        if (icon) icon.remove();
     }
 }
 
-// Optionally, hide the description panel and emoji when closing a sub-category
 document.querySelectorAll('.dropdown-toggle:not(.main-category)').forEach(btn => {
     btn.addEventListener('click', function() {
         if (btn.getAttribute('aria-expanded') === 'false') {
             const panel = document.getElementById('description-panel');
             panel.innerHTML = '';
             panel.classList.remove('active');
-            btn.classList.remove('active-sub');
         }
     });
 });
 
-// On page load, close all dropdowns
 document.addEventListener('DOMContentLoaded', () => {
     loadDescriptions();
     document.querySelectorAll('.dropdown-content').forEach(div => {
@@ -164,9 +172,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// --- Point & Ranking System ---
-
-// Example community data (replace with real data as needed)
 const communities = [
     {
         name: "Test Community 1",
@@ -194,7 +199,53 @@ const communities = [
     }
 ];
 
-// Track selected sub-categories
+const categoryHeadings = {
+    "rp-focused": "Play Style",
+    "competitive-multiplayer": "Play Style",
+    "casual-multiplayer": "Play Style",
+    "large-communities": "Community Size",
+    "medium-communities": "Community Size",
+    "small-communities": "Community Size",
+    "exclusive-communities": "Community Size",
+    "beginner-friendly": "Required Player Experience Level",
+    "intermediate": "Required Player Experience Level",
+    "advanced-expert": "Required Player Experience Level",
+    "mixed-skill": "Required Player Experience Level",
+    "vanilla": "Mod Usage",
+    "lightly-modded": "Mod Usage",
+    "heavily-modded": "Mod Usage",
+    "english-speaking": "Language",
+    "non-english-speaking": "Language",
+    "multilingual": "Language",
+    "regional-groups": "Geographic Region",
+    "global-groups": "Geographic Region",
+    "railroad": "RP Style",
+    "freeform": "RP Style",
+    "sandbox": "RP Style",
+    "narrative-driven": "RP Style",
+    "simulationist": "RP Style",
+    "tactical": "RP Style",
+    "voice-rp": "Session Type",
+    "text-based-rp": "Session Type",
+    "mixed-rp": "Session Type",
+    "single-campaign": "Concurrent Campaigns",
+    "multiple-campaigns": "Concurrent Campaigns",
+    "high-activity": "Writing Activity and Volume",
+    "moderate-activity": "Writing Activity and Volume",
+    "low-activity": "Writing Activity and Volume",
+    "high-lore": "Lore Requirement",
+    "moderate-lore": "Lore Requirement",
+    "low-lore": "Lore Requirement",
+    "strict-moderation": "Moderation Style",
+    "relaxed-moderation": "Moderation Style",
+    "community-guided": "Moderation Style",
+    "multiple-a-week": "Session Frequency",
+    "weekly": "Session Frequency",
+    "bi-monthly": "Session Frequency",
+    "monthly": "Session Frequency",
+    "other-session-frequency": "Session Frequency"
+};
+
 let selectedCriteria = new Set();
 
 function updateRankingPanel() {
@@ -205,14 +256,27 @@ function updateRankingPanel() {
 
     selectedArr.slice(0, maxVisible).forEach(id => {
         const btn = document.querySelector(`button[data-key="${id}"]`);
+        if (btn) {
+            const icon = btn.querySelector('.info-icon');
+            if (icon) icon.remove();
+        }
         const text = btn ? btn.textContent.trim() : id;
+        const head = categoryHeadings[id] ? categoryHeadings[id] + " > " : "";
         const li = document.createElement('li');
-        li.textContent = text;
+        li.textContent = head + text;
         li.style.cursor = 'pointer';
         li.title = 'Click to unselect';
-        li.addEventListener('click', function() {
+        li.addEventListener('click', function(e) {
+            e.stopPropagation();
             selectedCriteria.delete(id);
             if (btn) btn.classList.remove('active-sub');
+            const cb = document.querySelector(`.criteria-checkbox[data-criteria="${id}"]`);
+            if (cb) {
+                const oldHandler = cb.onchange;
+                cb.onchange = null;
+                cb.checked = false;
+                cb.onchange = oldHandler;
+            }
             updateRankingPanel();
         });
         selectedList.appendChild(li);
@@ -230,23 +294,39 @@ function updateRankingPanel() {
         selectedList.appendChild(li);
     }
 
-    // Remove green border from all buttons not in selectedCriteria
-    document.querySelectorAll('button[data-key]:not(.main-category)').forEach(btn => {
-        const id = btn.getAttribute('data-key');
-        if (!selectedCriteria.has(id)) {
-            btn.classList.remove('active-sub');
+    document.querySelectorAll('.criteria-checkbox').forEach(cb => {
+        const id = cb.getAttribute('data-criteria');
+        cb.checked = selectedCriteria.has(id);
+        const btn = document.querySelector(`button[data-key="${id}"]`);
+        if (btn) {
+            if (cb.checked) {
+                btn.classList.add('active-sub');
+                const icon = btn.querySelector('.info-icon');
+                if (icon) icon.remove();
+            } else {
+                btn.classList.remove('active-sub');
+            }
         }
     });
 
-    // Calculate ranking for each community
+    const descBtn = document.querySelector('.subcategory-btn.active-desc');
+    if (descBtn && selectedCriteria.has(descBtn.getAttribute('data-key'))) {
+        let icon = descBtn.querySelector('.info-icon');
+        if (!icon) {
+            icon = document.createElement('span');
+            icon.className = 'info-icon';
+            icon.innerHTML = '&#9432;';
+            descBtn.appendChild(icon);
+        }
+        icon.style.display = '';
+    }
+
     let results = '';
     if (selectedCriteria.size > 0) {
         let ranked = communities.map(comm => {
-            // Score: number of matching criteria
             let score = comm.criteria.filter(c => selectedCriteria.has(c)).length;
             return { name: comm.name, score, total: comm.criteria.length };
         });
-        // Sort by score descending
         ranked.sort((a, b) => b.score - a.score);
         results = '<strong>Best Matches:</strong><ul>';
         ranked.forEach(r => {
@@ -259,7 +339,15 @@ function updateRankingPanel() {
     document.getElementById('ranking-results').innerHTML = results;
 }
 
-// Add or remove criteria on checkbox change
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('button[data-key]:not(.main-category)').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            showDescription(btn);
+        });
+    });
+    updateRankingPanel();
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.criteria-checkbox').forEach(checkbox => {
         checkbox.addEventListener('change', function () {
@@ -275,9 +363,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateRankingPanel();
 });
 
-// --- Ranking Panel Toggle I ---
 document.addEventListener('DOMContentLoaded', () => {
-    // Ranking panel toggle logic
     const rankingPanel = document.getElementById('ranking-panel');
     const rankingBtn = document.getElementById('ranking-toggle-btn');
     let rankingVisible = false;
@@ -294,30 +380,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         updateRankingBtn();
     });
-    // Hide panel by default
     rankingPanel.classList.add('hide');
     updateRankingBtn();
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('button[data-key]:not(.main-category)').forEach(btn => {
-        btn.addEventListener('click', function (e) {
-            const id = btn.getAttribute('data-key');
-            if (selectedCriteria.has(id)) {
-                selectedCriteria.delete(id);
-                btn.classList.remove('active-sub');
-            } else {
-                selectedCriteria.add(id);
-                btn.classList.add('active-sub');
-            }
-            updateRankingPanel();
-            showDescription(btn);
-        });
-    });
-    updateRankingPanel();
-});
-
-// --- Communities Table Data ---
 const allCommunities = [
     {
         name: "Test Community 1",
@@ -348,7 +414,6 @@ const allCommunities = [
     }
 ];
 
-// --- Tab Switch Logic ---
 document.addEventListener('DOMContentLoaded', () => {
     const tabCategories = document.getElementById('tab-categories');
     const tabCommunities = document.getElementById('tab-communities');
@@ -363,7 +428,6 @@ document.addEventListener('DOMContentLoaded', () => {
         tabCommunities.classList.remove('active');
         contentCategories.style.display = '';
         contentCommunities.style.display = 'none';
-        // Show matching button and description panel
         if (rankingBtn) rankingBtn.style.display = '';
         if (rankingPanel) rankingPanel.style.display = '';
         if (descriptionPanel) descriptionPanel.style.display = '';
@@ -373,13 +437,11 @@ document.addEventListener('DOMContentLoaded', () => {
         tabCommunities.classList.add('active');
         contentCategories.style.display = 'none';
         contentCommunities.style.display = '';
-        // Hide matching button and description panel
         if (rankingBtn) rankingBtn.style.display = 'none';
         if (rankingPanel) rankingPanel.style.display = 'none';
         if (descriptionPanel) descriptionPanel.style.display = 'none';
     });
 
-    // Populate communities table
     const tbody = document.querySelector('#communities-table tbody');
     tbody.innerHTML = '';
     allCommunities.forEach(comm => {
@@ -397,15 +459,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Also hide the description panel if all main categories are collapsed (e.g. user clicks outside)
 document.addEventListener('click', function (e) {
-    // If click is outside any .main-category or .dropdown-content
-    const isInside = e.target.closest('.main-category, .dropdown-content, .subcategory-btn, button[data-key]');
+    const isInside = e.target.closest('.main-category, .dropdown-content, .subcategory-btn, button[data-key], #ranking-toggle-btn, #ranking-panel');
     if (!isInside) {
-        // Collapse all main categories
         document.querySelectorAll('.main-category').forEach(btn => btn.setAttribute('aria-expanded', 'false'));
         document.querySelectorAll('.category > .dropdown-content').forEach(div => div.style.display = 'none');
-        // Hide description panel
         const panel = document.getElementById('description-panel');
         panel.innerHTML = '';
         panel.classList.remove('active');

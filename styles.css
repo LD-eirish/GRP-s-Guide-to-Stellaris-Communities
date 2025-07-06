@@ -74,8 +74,6 @@ main {
     box-shadow: 0 2px 10px #0003;
     letter-spacing: 0.2px;
     position: relative;
-    /* Add space for the blue bar */
-    padding-left: 2.2em;
 }
 
 .dropdown-toggle::before,
@@ -99,6 +97,7 @@ main {
 .subcategory-btn:focus {
     background: #27313a;
     color: #b6e3ff;
+    box-shadow: 0 0 0 2px #4fa3ff88, 0 0 12px 2px #4fa3ff44;
 }
 
 .main-category {
@@ -135,10 +134,48 @@ main {
     box-shadow: 0 0 0 2px #6be67244;
 }
 
-.dropdown-toggle.active-sub::before,
-.subcategory-btn.active-sub::before {
-    background: #6be672;
-    opacity: 1;
+.subcategory-btn.active-desc:not(.active-sub) {
+    /* Gold-yellow animated border for description highlight only if not also selected */
+    border: 2.5px solid #ffd700 !important;
+    box-shadow:
+        0 0 0 0 #ffd70088,
+        0 0 6px 2px #ffd70044,
+        0 0 16px 6px #ffd70022;
+    animation: gold-emit 0.7s cubic-bezier(.4,0,.2,1) 1;
+    z-index: 2;
+}
+
+.subcategory-btn.active-desc.active-sub {
+    /* If both selected and description, show both: green border with gold glow */
+    border: 2.5px solid #6be672 !important;
+    box-shadow:
+        0 0 0 0 #ffd70088,
+        0 0 6px 2px #ffd70044,
+        0 0 16px 6px #ffd70022,
+        0 0 0 2px #6be67244;
+    animation: gold-emit 0.7s cubic-bezier(.4,0,.2,1) 1;
+    z-index: 3;
+}
+
+@keyframes gold-emit {
+    0% {
+        box-shadow:
+            0 0 0 0 #ffd70088,
+            0 0 0 0 #ffd70044,
+            0 0 0 0 #ffd70022;
+    }
+    60% {
+        box-shadow:
+            0 0 0 4px #ffd70088,
+            0 0 8px 4px #ffd70044,
+            0 0 16px 10px #ffd70022;
+    }
+    100% {
+        box-shadow:
+            0 0 0 0 #ffd70088,
+            0 0 6px 2px #ffd70044,
+            0 0 16px 6px #ffd70022;
+    }
 }
 
 /* Remove green border when not active-sub */
@@ -329,6 +366,27 @@ main {
     background: #2d3a2d;
 }
 
+.category-option {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    margin-bottom: 0.2em;
+}
+
+.category-option .criteria-checkbox {
+    accent-color: #4fa3ff;
+    width: 1.2em;
+    height: 1.2em;
+    margin: 0;
+    cursor: pointer;
+}
+
+.category-option .subcategory-btn {
+    flex: 1 1 auto;
+    margin-top: 0;
+    margin-bottom: 0.3em;
+}
+
 /* Responsive: stack on small screens */
 @media (max-width: 1400px) {
     #description-panel {
@@ -413,4 +471,25 @@ footer {
     margin-bottom: 0.7em;
     font-style: italic;
     font-weight: bold;
+}
+
+.dropdown-toggle.dropdown-open{
+    background: linear-gradient(90deg, #27313a 80%, #6be67233 100%);
+    color: #ffd580 !important;
+    border-left: 3px solid #ffd700 !important;
+    box-shadow: 0 4px 22px #4fa3ff44;
+}
+
+.subcategory-btn:not(.active-desc) {
+    background: #23272b !important;
+    border-left: none !important;
+    color: #fff !important;
+}
+
+/* Ensure yellow text for active-desc even after hover/focus */
+.subcategory-btn.active-desc,
+.subcategory-btn.active-desc:hover,
+.subcategory-btn.active-desc:focus {
+    background: linear-gradient(90deg, #27313a 80%, #6be67233 100%);
+    color: #ffd580 !important;
 }

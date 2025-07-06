@@ -5,6 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stellaris Community Categories</title>
     <link rel="stylesheet" href="styles.css" />
+    <!-- Add this style for the info icon (can be in <head> or your CSS file) -->
+    <style>
+      .info-icon {
+        display: inline-block;
+        margin-left: 0.6em;
+        font-size: 1.1em;
+        color: #ffd700;
+        vertical-align: middle;
+        pointer-events: none;
+        user-select: none;
+        opacity: 0.92;
+        transition: color 0.2s;
+      }
+      .subcategory-btn.active-desc .info-icon {
+        animation: info-pop 0.5s cubic-bezier(.4,0,.2,1);
+      }
+      @keyframes info-pop {
+        0% { transform: scale(0.7); opacity: 0; }
+        60% { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(1); opacity: 1; }
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -37,30 +59,27 @@
               <div class="multi-note">
                 Multiple play styles may apply to a community.
               </div>
-              <button
-                class="subcategory-btn"
-                type="button"
-                data-key="rp-focused"
-                onclick="showDescription(this)"
-              >
-                RP-Focused
-              </button>
-              <button
-                class="subcategory-btn"
-                type="button"
-                data-key="competitive-multiplayer"
-                onclick="showDescription(this)"
-              >
-                Competitive Multiplayer
-              </button>
-              <button
-                class="subcategory-btn"
-                type="button"
-                data-key="casual-multiplayer"
-                onclick="showDescription(this)"
-              >
-                Casual Multiplayer
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="rp-focused" id="cb-rp-focused" />
+                <button class="subcategory-btn" type="button" data-key="rp-focused" onclick="showDescription(this)" tabindex="0">
+                  RP-Focused
+                  <span class="info-icon" style="display:none;">&#9432;</span>
+                </button>
+              </div>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="competitive-multiplayer" id="cb-competitive-multiplayer" />
+                <button class="subcategory-btn" type="button" data-key="competitive-multiplayer" onclick="showDescription(this)" tabindex="0">
+                  Competitive Multiplayer
+                  <span class="info-icon" style="display:none;">&#9432;</span>
+                </button>
+              </div>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="casual-multiplayer" id="cb-casual-multiplayer" />
+                <button class="subcategory-btn" type="button" data-key="casual-multiplayer" onclick="showDescription(this)" tabindex="0">
+                  Casual Multiplayer
+                  <span class="info-icon" style="display:none;">&#9432;</span>
+                </button>
+              </div>
             </div>
           </section>
 
@@ -77,49 +96,37 @@
               Community Size
             </button>
             <div class="dropdown-content" id="community-size-main">
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="large-communities"
-                onclick="toggleDropdown('large-communities'); showDescription(this)"
-                data-key="large-communities"
-                type="button"
-              >
-                Large Communities
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="large-communities" id="cb-large-communities" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="large-communities"
+                  onclick="toggleDropdown('large-communities'); showDescription(this)" data-key="large-communities" type="button" tabindex="0">
+                  Large Communities
+                </button>
+              </div>
               <div class="dropdown-content" id="large-communities"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="medium-communities"
-                onclick="toggleDropdown('medium-communities'); showDescription(this)"
-                data-key="medium-communities"
-                type="button"
-              >
-                Medium Communities
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="medium-communities" id="cb-medium-communities" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="medium-communities"
+                  onclick="toggleDropdown('medium-communities'); showDescription(this)" data-key="medium-communities" type="button" tabindex="0">
+                  Medium Communities
+                </button>
+              </div>
               <div class="dropdown-content" id="medium-communities"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="small-communities"
-                onclick="toggleDropdown('small-communities'); showDescription(this)"
-                data-key="small-communities"
-                type="button"
-              >
-                Small Communities
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="small-communities" id="cb-small-communities" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="small-communities"
+                  onclick="toggleDropdown('small-communities'); showDescription(this)" data-key="small-communities" type="button" tabindex="0">
+                  Small Communities
+                </button>
+              </div>
               <div class="dropdown-content" id="small-communities"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="exclusive-communities"
-                onclick="toggleDropdown('exclusive-communities'); showDescription(this)"
-                data-key="exclusive-communities"
-                type="button"
-              >
-                Exclusive Communities
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="exclusive-communities" id="cb-exclusive-communities" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="exclusive-communities"
+                  onclick="toggleDropdown('exclusive-communities'); showDescription(this)" data-key="exclusive-communities" type="button" tabindex="0">
+                  Exclusive Communities
+                </button>
+              </div>
               <div class="dropdown-content" id="exclusive-communities"></div>
             </div>
           </section>
@@ -137,53 +144,37 @@
               Required Player Experience Level
             </button>
             <div class="dropdown-content" id="experience-level-main">
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="beginner-friendly"
-                onclick="toggleDropdown('beginner-friendly'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'beginner-friendly')"
-                type="button"
-                data-key="beginner-friendly"
-              >
-                Beginner-Friendly
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="beginner-friendly" id="cb-beginner-friendly" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="beginner-friendly"
+                  onclick="toggleDropdown('beginner-friendly'); showDescription(this)" data-key="beginner-friendly" type="button" tabindex="0">
+                  Beginner-Friendly
+                </button>
+              </div>
               <div class="dropdown-content" id="beginner-friendly"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="intermediate"
-                onclick="toggleDropdown('intermediate'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'intermediate')"
-                type="button"
-                data-key="intermediate"
-              >
-                Intermediate
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="intermediate" id="cb-intermediate" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="intermediate"
+                  onclick="toggleDropdown('intermediate'); showDescription(this)" data-key="intermediate" type="button" tabindex="0">
+                  Intermediate
+                </button>
+              </div>
               <div class="dropdown-content" id="intermediate"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="advanced-expert"
-                onclick="toggleDropdown('advanced-expert'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'advanced-expert')"
-                type="button"
-                data-key="advanced-expert"
-              >
-                Advanced/Expert
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="advanced-expert" id="cb-advanced-expert" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="advanced-expert"
+                  onclick="toggleDropdown('advanced-expert'); showDescription(this)" data-key="advanced-expert" type="button" tabindex="0">
+                  Advanced/Expert
+                </button>
+              </div>
               <div class="dropdown-content" id="advanced-expert"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="mixed-skill"
-                onclick="toggleDropdown('mixed-skill'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'mixed-skill')"
-                type="button"
-                data-key="mixed-skill"
-              >
-                Mixed Skill Level
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="mixed-skill" id="cb-mixed-skill" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="mixed-skill"
+                  onclick="toggleDropdown('mixed-skill'); showDescription(this)" data-key="mixed-skill" type="button" tabindex="0">
+                  Mixed Skill Level
+                </button>
+              </div>
               <div class="dropdown-content" id="mixed-skill"></div>
             </div>
           </section>
@@ -201,41 +192,29 @@
               Mod Usage
             </button>
             <div class="dropdown-content" id="mod-usage-main">
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="vanilla"
-                onclick="toggleDropdown('vanilla'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'vanilla')"
-                type="button"
-                data-key="vanilla"
-              >
-                Vanilla
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="vanilla" id="cb-vanilla" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="vanilla"
+                  onclick="toggleDropdown('vanilla'); showDescription(this)" data-key="vanilla" type="button" tabindex="0">
+                  Vanilla
+                </button>
+              </div>
               <div class="dropdown-content" id="vanilla"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="lightly-modded"
-                onclick="toggleDropdown('lightly-modded'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'lightly-modded')"
-                type="button"
-                data-key="lightly-modded"
-              >
-                Lightly Modded
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="lightly-modded" id="cb-lightly-modded" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="lightly-modded"
+                  onclick="toggleDropdown('lightly-modded'); showDescription(this)" data-key="lightly-modded" type="button" tabindex="0">
+                  Lightly Modded
+                </button>
+              </div>
               <div class="dropdown-content" id="lightly-modded"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="heavily-modded"
-                onclick="toggleDropdown('heavily-modded'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'heavily-modded')"
-                type="button"
-                data-key="heavily-modded"
-              >
-                Heavily Modded
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="heavily-modded" id="cb-heavily-modded" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="heavily-modded"
+                  onclick="toggleDropdown('heavily-modded'); showDescription(this)" data-key="heavily-modded" type="button" tabindex="0">
+                  Heavily Modded
+                </button>
+              </div>
               <div class="dropdown-content" id="heavily-modded"></div>
             </div>
           </section>
@@ -253,41 +232,29 @@
               Language
             </button>
             <div class="dropdown-content" id="language-main">
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="english-speaking"
-                onclick="toggleDropdown('english-speaking'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'english-speaking')"
-                type="button"
-                data-key="english-speaking"
-              >
-                English-Speaking
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="english-speaking" id="cb-english-speaking" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="english-speaking"
+                  onclick="toggleDropdown('english-speaking'); showDescription(this)" data-key="english-speaking" type="button" tabindex="0">
+                  English-Speaking
+                </button>
+              </div>
               <div class="dropdown-content" id="english-speaking"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="non-english-speaking"
-                onclick="toggleDropdown('non-english-speaking'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'non-english-speaking')"
-                type="button"
-                data-key="non-english-speaking"
-              >
-                Non-English Speaking
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="non-english-speaking" id="cb-non-english-speaking" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="non-english-speaking"
+                  onclick="toggleDropdown('non-english-speaking'); showDescription(this)" data-key="non-english-speaking" type="button" tabindex="0">
+                  Non-English Speaking
+                </button>
+              </div>
               <div class="dropdown-content" id="non-english-speaking"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="multilingual"
-                onclick="toggleDropdown('multilingual'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'multilingual')"
-                type="button"
-                data-key="multilingual"
-              >
-                Multilingual
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="multilingual" id="cb-multilingual" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="multilingual"
+                  onclick="toggleDropdown('multilingual'); showDescription(this)" data-key="multilingual" type="button" tabindex="0">
+                  Multilingual
+                </button>
+              </div>
               <div class="dropdown-content" id="multilingual"></div>
             </div>
           </section>
@@ -305,29 +272,21 @@
               Geographic Region
             </button>
             <div class="dropdown-content" id="region-main">
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="regional-groups"
-                onclick="toggleDropdown('regional-groups'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'regional-groups')"
-                type="button"
-                data-key="regional-groups"
-              >
-                Regional Groups
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="regional-groups" id="cb-regional-groups" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="regional-groups"
+                  onclick="toggleDropdown('regional-groups'); showDescription(this)" data-key="regional-groups" type="button" tabindex="0">
+                  Regional Groups
+                </button>
+              </div>
               <div class="dropdown-content" id="regional-groups"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="global-groups"
-                onclick="toggleDropdown('global-groups'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'global-groups')"
-                type="button"
-                data-key="global-groups"
-              >
-                Global Groups
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="global-groups" id="cb-global-groups" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="global-groups"
+                  onclick="toggleDropdown('global-groups'); showDescription(this)" data-key="global-groups" type="button" tabindex="0">
+                  Global Groups
+                </button>
+              </div>
               <div class="dropdown-content" id="global-groups"></div>
             </div>
           </section>
@@ -346,77 +305,53 @@
             </button>
             <div class="dropdown-content" id="rp-style-main">
               <div class="multi-note">Communities may use multiple RP styles.</div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="railroad"
-                onclick="toggleDropdown('railroad'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'railroad')"
-                type="button"
-                data-key="railroad"
-              >
-                Railroad
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="railroad" id="cb-railroad" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="railroad"
+                  onclick="toggleDropdown('railroad'); showDescription(this)" data-key="railroad" type="button" tabindex="0">
+                  Railroad
+                </button>
+              </div>
               <div class="dropdown-content" id="railroad"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="freeform"
-                onclick="toggleDropdown('freeform'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'freeform')"
-                type="button"
-                data-key="freeform"
-              >
-                Freeform
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="freeform" id="cb-freeform" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="freeform"
+                  onclick="toggleDropdown('freeform'); showDescription(this)" data-key="freeform" type="button" tabindex="0">
+                  Freeform
+                </button>
+              </div>
               <div class="dropdown-content" id="freeform"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="sandbox"
-                onclick="toggleDropdown('sandbox'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'sandbox')"
-                type="button"
-                data-key="sandbox"
-              >
-                Sandbox
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="sandbox" id="cb-sandbox" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="sandbox"
+                  onclick="toggleDropdown('sandbox'); showDescription(this)" data-key="sandbox" type="button" tabindex="0">
+                  Sandbox
+                </button>
+              </div>
               <div class="dropdown-content" id="sandbox"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="narrative-driven"
-                onclick="toggleDropdown('narrative-driven'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'narrative-driven')"
-                type="button"
-                data-key="narrative-driven"
-              >
-                Narrative-Driven
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="narrative-driven" id="cb-narrative-driven" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="narrative-driven"
+                  onclick="toggleDropdown('narrative-driven'); showDescription(this)" data-key="narrative-driven" type="button" tabindex="0">
+                  Narrative-Driven
+                </button>
+              </div>
               <div class="dropdown-content" id="narrative-driven"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="simulationist"
-                onclick="toggleDropdown('simulationist'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'simulationist')"
-                type="button"
-                data-key="simulationist"
-              >
-                Simulationist
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="simulationist" id="cb-simulationist" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="simulationist"
+                  onclick="toggleDropdown('simulationist'); showDescription(this)" data-key="simulationist" type="button" tabindex="0">
+                  Simulationist
+                </button>
+              </div>
               <div class="dropdown-content" id="simulationist"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="tactical"
-                onclick="toggleDropdown('tactical'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'tactical')"
-                type="button"
-                data-key="tactical"
-              >
-                Tactical
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="tactical" id="cb-tactical" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="tactical"
+                  onclick="toggleDropdown('tactical'); showDescription(this)" data-key="tactical" type="button" tabindex="0">
+                  Tactical
+                </button>
+              </div>
               <div class="dropdown-content" id="tactical"></div>
             </div>
           </section>
@@ -434,41 +369,29 @@
               Session Type
             </button>
             <div class="dropdown-content" id="session-type-main">
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="voice-rp"
-                onclick="toggleDropdown('voice-rp'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'voice-rp')"
-                type="button"
-                data-key="voice-rp"
-              >
-                Voice RP
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="voice-rp" id="cb-voice-rp" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="voice-rp"
+                  onclick="toggleDropdown('voice-rp'); showDescription(this)" data-key="voice-rp" type="button" tabindex="0">
+                  Voice RP
+                </button>
+              </div>
               <div class="dropdown-content" id="voice-rp"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="text-based-rp"
-                onclick="toggleDropdown('text-based-rp'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'text-based-rp')"
-                type="button"
-                data-key="text-based-rp"
-              >
-                Text-Based RP
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="text-based-rp" id="cb-text-based-rp" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="text-based-rp"
+                  onclick="toggleDropdown('text-based-rp'); showDescription(this)" data-key="text-based-rp" type="button" tabindex="0">
+                  Text-Based RP
+                </button>
+              </div>
               <div class="dropdown-content" id="text-based-rp"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="mixed-rp"
-                onclick="toggleDropdown('mixed-rp'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'mixed-rp')"
-                type="button"
-                data-key="mixed-rp"
-              >
-                Mixed
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="mixed-rp" id="cb-mixed-rp" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="mixed-rp"
+                  onclick="toggleDropdown('mixed-rp'); showDescription(this)" data-key="mixed-rp" type="button" tabindex="0">
+                  Mixed
+                </button>
+              </div>
               <div class="dropdown-content" id="mixed-rp"></div>
             </div>
           </section>
@@ -486,29 +409,21 @@
               Concurrent Campaigns
             </button>
             <div class="dropdown-content" id="concurrent-campaigns-main">
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="single-campaign"
-                onclick="toggleDropdown('single-campaign'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'single-campaign')"
-                type="button"
-                data-key="single-campaign"
-              >
-                Single Campaign
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="single-campaign" id="cb-single-campaign" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="single-campaign"
+                  onclick="toggleDropdown('single-campaign'); showDescription(this)" data-key="single-campaign" type="button" tabindex="0">
+                  Single Campaign
+                </button>
+              </div>
               <div class="dropdown-content" id="single-campaign"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="multiple-campaigns"
-                onclick="toggleDropdown('multiple-campaigns'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'multiple-campaigns')"
-                type="button"
-                data-key="multiple-campaigns"
-              >
-                Multiple Campaigns
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="multiple-campaigns" id="cb-multiple-campaigns" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="multiple-campaigns"
+                  onclick="toggleDropdown('multiple-campaigns'); showDescription(this)" data-key="multiple-campaigns" type="button" tabindex="0">
+                  Multiple Campaigns
+                </button>
+              </div>
               <div class="dropdown-content" id="multiple-campaigns"></div>
             </div>
           </section>
@@ -526,41 +441,29 @@
               Writing Activity and Volume
             </button>
             <div class="dropdown-content" id="writing-activity-main">
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="high-activity"
-                onclick="toggleDropdown('high-activity'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'high-activity')"
-                type="button"
-                data-key="high-activity"
-              >
-                High Activity
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="high-activity" id="cb-high-activity" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="high-activity"
+                  onclick="toggleDropdown('high-activity'); showDescription(this)" data-key="high-activity" type="button" tabindex="0">
+                  High Activity
+                </button>
+              </div>
               <div class="dropdown-content" id="high-activity"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="moderate-activity"
-                onclick="toggleDropdown('moderate-activity'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'moderate-activity')"
-                type="button"
-                data-key="moderate-activity"
-              >
-                Moderate Activity
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="moderate-activity" id="cb-moderate-activity" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="moderate-activity"
+                  onclick="toggleDropdown('moderate-activity'); showDescription(this)" data-key="moderate-activity" type="button" tabindex="0">
+                  Moderate Activity
+                </button>
+              </div>
               <div class="dropdown-content" id="moderate-activity"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="low-activity"
-                onclick="toggleDropdown('low-activity'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'low-activity')"
-                type="button"
-                data-key="low-activity"
-              >
-                Low Activity
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="low-activity" id="cb-low-activity" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="low-activity"
+                  onclick="toggleDropdown('low-activity'); showDescription(this)" data-key="low-activity" type="button" tabindex="0">
+                  Low Activity
+                </button>
+              </div>
               <div class="dropdown-content" id="low-activity"></div>
             </div>
           </section>
@@ -578,41 +481,29 @@
               Lore Requirement
             </button>
             <div class="dropdown-content" id="lore-requirement-main">
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="high-lore"
-                onclick="toggleDropdown('high-lore'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'high-lore')"
-                type="button"
-                data-key="high-lore"
-              >
-                High Lore Demand
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="high-lore" id="cb-high-lore" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="high-lore"
+                  onclick="toggleDropdown('high-lore'); showDescription(this)" data-key="high-lore" type="button" tabindex="0">
+                  High Lore Demand
+                </button>
+              </div>
               <div class="dropdown-content" id="high-lore"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="moderate-lore"
-                onclick="toggleDropdown('moderate-lore'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'moderate-lore')"
-                type="button"
-                data-key="moderate-lore"
-              >
-                Moderate Lore Demand
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="moderate-lore" id="cb-moderate-lore" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="moderate-lore"
+                  onclick="toggleDropdown('moderate-lore'); showDescription(this)" data-key="moderate-lore" type="button" tabindex="0">
+                  Moderate Lore Demand
+                </button>
+              </div>
               <div class="dropdown-content" id="moderate-lore"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="low-lore"
-                onclick="toggleDropdown('low-lore'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'low-lore')"
-                type="button"
-                data-key="low-lore"
-              >
-                Low Lore Demand
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="low-lore" id="cb-low-lore" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="low-lore"
+                  onclick="toggleDropdown('low-lore'); showDescription(this)" data-key="low-lore" type="button" tabindex="0">
+                  Low Lore Demand
+                </button>
+              </div>
               <div class="dropdown-content" id="low-lore"></div>
             </div>
           </section>
@@ -630,30 +521,29 @@
               Moderation Style
             </button>
             <div class="dropdown-content" id="moderation-style-main">
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="strict-moderation"
-                onclick="toggleDropdown('strict-moderation'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'strict-moderation')"
-                type="button"
-                data-key="strict-moderation"
-              >
-                Strict Moderation
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="strict-moderation" id="cb-strict-moderation" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="strict-moderation"
+                  onclick="toggleDropdown('strict-moderation'); showDescription(this)" data-key="strict-moderation" type="button" tabindex="0">
+                  Strict Moderation
+                </button>
+              </div>
               <div class="dropdown-content" id="strict-moderation"></div>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="relaxed-moderation" id="cb-relaxed-moderation" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="relaxed-moderation"
+                  onclick="toggleDropdown('relaxed-moderation'); showDescription(this)" data-key="relaxed-moderation" type="button" tabindex="0">
+                  Relaxed Moderation
+                </button>
+              </div>
               <div class="dropdown-content" id="relaxed-moderation"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="community-guided"
-                onclick="toggleDropdown('community-guided'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'community-guided')"
-                type="button"
-                data-key="community-guided"
-              >
-                Community-Guided
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="community-guided" id="cb-community-guided" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="community-guided"
+                  onclick="toggleDropdown('community-guided'); showDescription(this)" data-key="community-guided" type="button" tabindex="0">
+                  Community-Guided
+                </button>
+              </div>
               <div class="dropdown-content" id="community-guided"></div>
             </div>
           </section>
@@ -671,65 +561,45 @@
               Session Frequency
             </button>
             <div class="dropdown-content" id="session-frequency-main">
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="multiple-a-week"
-                onclick="toggleDropdown('multiple-a-week'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'multiple-a-week')"
-                type="button"
-                data-key="multiple-a-week"
-              >
-                Multiple a Week
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="multiple-a-week" id="cb-multiple-a-week" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="multiple-a-week"
+                  onclick="toggleDropdown('multiple-a-week'); showDescription(this)" data-key="multiple-a-week" type="button" tabindex="0">
+                  Multiple a Week
+                </button>
+              </div>
               <div class="dropdown-content" id="multiple-a-week"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="weekly"
-                onclick="toggleDropdown('weekly'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'weekly')"
-                type="button"
-                data-key="weekly"
-              >
-                Weekly
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="weekly" id="cb-weekly" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="weekly"
+                  onclick="toggleDropdown('weekly'); showDescription(this)" data-key="weekly" type="button" tabindex="0">
+                  Weekly
+                </button>
+              </div>
               <div class="dropdown-content" id="weekly"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="bi-monthly"
-                onclick="toggleDropdown('bi-monthly'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'bi-monthly')"
-                type="button"
-                data-key="bi-monthly"
-              >
-                Bi-Monthly
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="bi-monthly" id="cb-bi-monthly" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="bi-monthly"
+                  onclick="toggleDropdown('bi-monthly'); showDescription(this)" data-key="bi-monthly" type="button" tabindex="0">
+                  Bi-Monthly
+                </button>
+              </div>
               <div class="dropdown-content" id="bi-monthly"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="monthly"
-                onclick="toggleDropdown('monthly'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'monthly')"
-                type="button"
-                data-key="monthly"
-              >
-                Monthly
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="monthly" id="cb-monthly" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="monthly"
+                  onclick="toggleDropdown('monthly'); showDescription(this)" data-key="monthly" type="button" tabindex="0">
+                  Monthly
+                </button>
+              </div>
               <div class="dropdown-content" id="monthly"></div>
-              <button
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-controls="other-session-frequency"
-                onclick="toggleDropdown('other-session-frequency'); showDescription(this)"
-                onkeydown="handleKeyDown(event, 'other-session-frequency')"
-                type="button"
-                data-key="other-session-frequency"
-              >
-                Other
-              </button>
+              <div class="category-option">
+                <input class="criteria-checkbox" type="checkbox" data-criteria="other-session-frequency" id="cb-other-session-frequency" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="other-session-frequency"
+                  onclick="toggleDropdown('other-session-frequency'); showDescription(this)" data-key="other-session-frequency" type="button" tabindex="0">
+                  Other
+                </button>
+              </div>
               <div class="dropdown-content" id="other-session-frequency"></div>
             </div>
           </section>
@@ -775,8 +645,9 @@
       </div>
     </div>
     <footer>
-      <p>© 2025 GRP Community</p>
+      <p>2025 GRP Community</p>
     </footer>
     <script src="script.js"></script>
   </body>
 </html>
+
