@@ -142,7 +142,8 @@ function showDescription(button) {
     const panel = document.getElementById('description-panel');
     const anyExpanded = Array.from(document.querySelectorAll('.main-category')).some(btn => btn.getAttribute('aria-expanded') === 'true');
     if (desc && anyExpanded) {
-        panel.innerHTML = desc;
+        // Info icon absolutely positioned in panel
+        panel.innerHTML = `<span class="info-icon">&#9432;</span><div style="position:relative;">${desc}</div>`;
         panel.classList.add('active');
     } else {
         panel.innerHTML = '';

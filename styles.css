@@ -213,6 +213,7 @@ main {
     visibility: hidden;
     margin: 0;
     box-sizing: border-box;
+    padding-top: 3.2rem; 
 }
 
 #description-panel.active {
@@ -491,4 +492,20 @@ footer {
 .subcategory-btn.active-desc:focus {
     background: linear-gradient(90deg, #27313a 80%, #6be67233 100%);
     color: #ffd580 !important;
+}
+
+#description-panel .info-icon {
+    display: inline-block;
+    position: absolute;
+    top: 1.1rem;
+    left: 1.1rem;
+    margin: 0;
+    font-size: 1.35em;
+    color: #ffd700;
+    vertical-align: middle;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.92;
+    transition: color 0.2s;
+    animation: info-pop 0.5s cubic-bezier(.4,0,.2,1);
 }
