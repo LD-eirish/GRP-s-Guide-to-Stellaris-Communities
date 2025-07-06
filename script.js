@@ -418,8 +418,14 @@ const allCommunities = [
 document.addEventListener('DOMContentLoaded', () => {
     const tabCategories = document.getElementById('tab-categories');
     const tabCommunities = document.getElementById('tab-communities');
+    // Remove tabNews and contentNews
+    const tabSubmit = document.getElementById('tab-submit');
+    const tabAbout = document.getElementById('tab-about');
     const contentCategories = document.getElementById('tab-content-categories');
     const contentCommunities = document.getElementById('tab-content-communities');
+    // Remove contentNews
+    const contentSubmit = document.getElementById('tab-content-submit');
+    const contentAbout = document.getElementById('tab-content-about');
     const rankingPanel = document.getElementById('ranking-panel');
     const rankingBtn = document.getElementById('ranking-toggle-btn');
     const descriptionPanel = document.getElementById('description-panel');
@@ -427,8 +433,14 @@ document.addEventListener('DOMContentLoaded', () => {
     tabCategories.addEventListener('click', () => {
         tabCategories.classList.add('active');
         tabCommunities.classList.remove('active');
+        // Remove tabNews
+        tabSubmit.classList.remove('active');
+        tabAbout.classList.remove('active');
         contentCategories.style.display = '';
         contentCommunities.style.display = 'none';
+        // Remove contentNews
+        contentSubmit.style.display = 'none';
+        contentAbout.style.display = 'none';
         if (rankingBtn) rankingBtn.style.display = '';
         if (rankingPanel) rankingPanel.style.display = '';
         if (descriptionPanel) descriptionPanel.style.display = '';
@@ -436,8 +448,45 @@ document.addEventListener('DOMContentLoaded', () => {
     tabCommunities.addEventListener('click', () => {
         tabCategories.classList.remove('active');
         tabCommunities.classList.add('active');
+        // Remove tabNews
+        tabSubmit.classList.remove('active');
+        tabAbout.classList.remove('active');
         contentCategories.style.display = 'none';
         contentCommunities.style.display = '';
+        // Remove contentNews
+        contentSubmit.style.display = 'none';
+        contentAbout.style.display = 'none';
+        if (rankingBtn) rankingBtn.style.display = 'none';
+        if (rankingPanel) rankingPanel.style.display = 'none';
+        if (descriptionPanel) descriptionPanel.style.display = 'none';
+    });
+    // Remove tabNews event handler
+    tabSubmit.addEventListener('click', () => {
+        tabCategories.classList.remove('active');
+        tabCommunities.classList.remove('active');
+        // Remove tabNews
+        tabSubmit.classList.add('active');
+        tabAbout.classList.remove('active');
+        contentCategories.style.display = 'none';
+        contentCommunities.style.display = 'none';
+        // Remove contentNews
+        contentSubmit.style.display = '';
+        contentAbout.style.display = 'none';
+        if (rankingBtn) rankingBtn.style.display = 'none';
+        if (rankingPanel) rankingPanel.style.display = 'none';
+        if (descriptionPanel) descriptionPanel.style.display = 'none';
+    });
+    tabAbout.addEventListener('click', () => {
+        tabCategories.classList.remove('active');
+        tabCommunities.classList.remove('active');
+        // Remove tabNews
+        tabSubmit.classList.remove('active');
+        tabAbout.classList.add('active');
+        contentCategories.style.display = 'none';
+        contentCommunities.style.display = 'none';
+        // Remove contentNews
+        contentSubmit.style.display = 'none';
+        contentAbout.style.display = '';
         if (rankingBtn) rankingBtn.style.display = 'none';
         if (rankingPanel) rankingPanel.style.display = 'none';
         if (descriptionPanel) descriptionPanel.style.display = 'none';

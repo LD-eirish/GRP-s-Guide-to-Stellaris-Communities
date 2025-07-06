@@ -41,6 +41,12 @@
           <button id="tab-communities" class="tab-btn" type="button">
             Communities
           </button>
+          <button id="tab-submit" class="tab-btn" type="button">
+            Submit Community
+          </button>
+          <button id="tab-about" class="tab-btn" type="button">
+            About
+          </button>
         </div>
         <div id="tab-content-categories">
           <!-- Play Style -->
@@ -605,9 +611,9 @@
           </section>
         </div>
         <div id="tab-content-communities" style="display:none;">
-          <h1 style="color:#ffd580; font-size:2.2em; margin-top:0.5em; margin-bottom:1em; text-align:center;">
-            NEEDS REWORK: W.I.P:
-          </h1>
+          <div style="background:#ffd700;color:#23272b;font-weight:bold;padding:1em 1.5em;margin-bottom:1.2em;border-radius:8px;text-align:center;box-shadow:0 2px 8px #0002;">
+    W.I.P. DO NOT SUBMIT. This Page is for test purposes only.
+  </div>
           <h2>All Stellaris Communities</h2>
           <table id="communities-table">
             <thead>
@@ -621,6 +627,65 @@
               <!-- Populated by script.js -->
             </tbody>
           </table>
+        </div>
+        <div id="tab-content-submit" style="display:none;">
+          <div style="background:#ffd700;color:#23272b;font-weight:bold;padding:1em 1.5em;margin-bottom:1.2em;border-radius:8px;text-align:center;box-shadow:0 2px 8px #0002;">
+    W.I.P. DO NOT SUBMIT. This Page is for test purposes only.
+  </div>
+          <h2>Submit Your Community</h2>
+          <!-- Google Forms integration -->
+          <form id="submit-community-form"
+        action="https://docs.google.com/forms/d/e/1FAIpQLSfLvWL9-K8B3h_vEDMyDigMzhZnYpASr3Q9gGuBf3JkCnSACQ/formResponse"
+        method="POST"
+        target="hidden_iframe"
+        onsubmit="return submitCommunityForm();"
+        autocomplete="off">
+    <label>
+      Community Name:<br>
+      <input type="text" name="entry.1241345937" required style="width:90%;margin-bottom:0.7em;">
+    </label><br>
+    <label>
+      Description:<br>
+      <textarea name="entry.1255750588" rows="3" required style="width:90%;margin-bottom:0.7em;"></textarea>
+    </label><br>
+    <label>
+      Categories (comma separated):<br>
+      <input type="text" name="entry.1210572624" style="width:90%;margin-bottom:0.7em;">
+    </label><br>
+    <button type="submit">Submit</button>
+    <div id="submit-community-message" style="margin-top:1em;color:#ffd580;"></div>
+  </form>
+  <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+  <p style="font-size:index.html0.95em;color:#aaa;margin-top:1em;">
+    Note: Submissions are sent via Google Forms and will be reviewed before being added to the public list.
+  </p>
+        </div>
+        <div id="tab-content-about" style="display:none;">
+          <h2>About This Project</h2>
+          <p>
+            This guide helps you explore and match with Stellaris multiplayer communities based on your preferences. It also aids Stellaris communities to represent themselves, find more users, and discover potential for collaboration with other groups. It is designed to make it easier for both new and existing communities to connect, grow, and share their unique play styles and events.
+            <br><br>
+            <br><br>
+            <strong>Features:</strong>
+            <ul>
+              <li>Browse and filter communities by detailed categories</li>
+              <li>See descriptions and explanations for each category</li>
+              <li>Find your best community matches</li>
+              <li>Communities can submit their group for inclusion</li>
+              <li>Facilitates collaboration and networking between communities</li>
+            </ul>
+            <strong>Credits:</strong>
+            <ul>
+              <li>Created by GRP Community</li>
+            </ul>
+            <strong>Instructions:</strong>
+            <ul>
+              <li>Use the <b>Categories</b> tab to select your preferences</li>
+              <li>Switch to <b>Communities</b> to browse all available groups</li>
+              <li>Click <b>Show Ranking</b> to see your best matches</li>
+              <li>Communities can use the <b>Submit Community</b> tab to add their group</li>
+            </ul>
+          </p>
         </div>
       </main>
       <div id="description-panel"></div>
@@ -648,6 +713,19 @@
       <p>2025 GRP Community</p>
     </footer>
     <script src="script.js"></script>
+    <script>
+      // ...existing code...
+      function submitCommunityForm() {
+        var msg = document.getElementById('submit-community-message');
+        msg.textContent = "Thank you for your submission! Your community will be reviewed.";
+        msg.style.color = "#6be672";
+        setTimeout(function() {
+          document.getElementById('submit-community-form').reset();
+        }, 1000);
+        return true; // allow form to submit to Google Forms
+      }
+      // ...existing code...
+    </script>
   </body>
 </html>
 
