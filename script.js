@@ -124,9 +124,9 @@ function showDescription(button) {
         "moderate-activity": "Communities with steady pacing, balancing regular posts and thoughtful participation.",
         "low-activity": "Communities where posts are infrequent, allowing a relaxed, long-term approach to RP.",
         // Lore Requirement
-        "high-lore": "Communities expecting in-depth Stellaris lore knowledge and consistent canon.",
-        "moderate-lore": "Communities that value lore familiarity but allow flexible interpretations.",
-        "low-lore": "Communities where lore is not enforced, focusing instead on creative fun.",
+        "high-lore": "Communities expecting in-depth lore documents and consistent canon.",
+        "moderate-lore": "Communities that value lore lore documents but allow flexible writing and expansion.",
+        "low-lore": "Communities where a lore-demand is not enforced, focusing on spontanious lore expansion instead.",
         // Moderation Style
         "strict-moderation": "Communities with clear rules and active oversight to maintain civility and order.",
         "relaxed-moderation": "Communities with light administrative involvement, relying on trust and self-control.",
