@@ -128,8 +128,8 @@ function showDescription(button) {
         "moderate-lore": "Communities that value lore lore documents but allow flexible writing and expansion.",
         "low-lore": "Communities where a lore-demand is not enforced, focusing on spontanious lore expansion instead.",
         // Moderation Style
-        "strict-moderation": "Communities with clear rules and active oversight to maintain civility and order.",
-        "relaxed-moderation": "Communities with light administrative involvement, relying on trust and self-control.",
+        "strict-moderation": "Communities where the hosts control all aspects of the Community themselves. This includes rules, mods, etc.",
+        "relaxed-moderation": "Communities with light administrative involvement, the community is being involved on major decicions.",
         "community-guided": "Communities shaped by group input, jointly managing rules and direction.",
         // Session Frequency
         "multiple-a-week": "Communities meeting multiple times a week for frequent engagement.",
