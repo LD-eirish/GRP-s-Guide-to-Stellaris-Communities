@@ -342,7 +342,7 @@ function updateRankingPanel() {
 
 document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('button[data-key]:not(.main-category)').forEach(btn => {
-        btn.addEventListener('click', function (e) {
+        btn.addEventListener('click', function () {
             showDescription(btn);
         });
     });
@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rankingBtn = document.getElementById('ranking-toggle-btn');
     let rankingVisible = false;
     function updateRankingBtn() {
-        rankingBtn.textContent = rankingVisible ? "Matches" : "Matches";
+        rankingBtn.textContent = "Matches";
         rankingBtn.setAttribute('aria-expanded', rankingVisible ? 'true' : 'false');
     }
     rankingBtn.addEventListener('click', () => {
@@ -418,12 +418,10 @@ const allCommunities = [
 document.addEventListener('DOMContentLoaded', () => {
     const tabCategories = document.getElementById('tab-categories');
     const tabCommunities = document.getElementById('tab-communities');
-    // Remove tabNews and contentNews
     const tabSubmit = document.getElementById('tab-submit');
     const tabAbout = document.getElementById('tab-about');
     const contentCategories = document.getElementById('tab-content-categories');
     const contentCommunities = document.getElementById('tab-content-communities');
-    // Remove contentNews
     const contentSubmit = document.getElementById('tab-content-submit');
     const contentAbout = document.getElementById('tab-content-about');
     const rankingPanel = document.getElementById('ranking-panel');
@@ -433,12 +431,10 @@ document.addEventListener('DOMContentLoaded', () => {
     tabCategories.addEventListener('click', () => {
         tabCategories.classList.add('active');
         tabCommunities.classList.remove('active');
-        // Remove tabNews
         tabSubmit.classList.remove('active');
         tabAbout.classList.remove('active');
         contentCategories.style.display = '';
         contentCommunities.style.display = 'none';
-        // Remove contentNews
         contentSubmit.style.display = 'none';
         contentAbout.style.display = 'none';
         if (rankingBtn) rankingBtn.style.display = '';
@@ -448,28 +444,23 @@ document.addEventListener('DOMContentLoaded', () => {
     tabCommunities.addEventListener('click', () => {
         tabCategories.classList.remove('active');
         tabCommunities.classList.add('active');
-        // Remove tabNews
         tabSubmit.classList.remove('active');
         tabAbout.classList.remove('active');
         contentCategories.style.display = 'none';
         contentCommunities.style.display = '';
-        // Remove contentNews
         contentSubmit.style.display = 'none';
         contentAbout.style.display = 'none';
         if (rankingBtn) rankingBtn.style.display = 'none';
         if (rankingPanel) rankingPanel.style.display = 'none';
         if (descriptionPanel) descriptionPanel.style.display = 'none';
     });
-    // Remove tabNews event handler
     tabSubmit.addEventListener('click', () => {
         tabCategories.classList.remove('active');
         tabCommunities.classList.remove('active');
-        // Remove tabNews
         tabSubmit.classList.add('active');
         tabAbout.classList.remove('active');
         contentCategories.style.display = 'none';
         contentCommunities.style.display = 'none';
-        // Remove contentNews
         contentSubmit.style.display = '';
         contentAbout.style.display = 'none';
         if (rankingBtn) rankingBtn.style.display = 'none';
@@ -479,12 +470,10 @@ document.addEventListener('DOMContentLoaded', () => {
     tabAbout.addEventListener('click', () => {
         tabCategories.classList.remove('active');
         tabCommunities.classList.remove('active');
-        // Remove tabNews
         tabSubmit.classList.remove('active');
         tabAbout.classList.add('active');
         contentCategories.style.display = 'none';
         contentCommunities.style.display = 'none';
-        // Remove contentNews
         contentSubmit.style.display = 'none';
         contentAbout.style.display = '';
         if (rankingBtn) rankingBtn.style.display = 'none';
@@ -518,4 +507,84 @@ document.addEventListener('click', function (e) {
         panel.innerHTML = '';
         panel.classList.remove('active');
     }
+});
+
+function updateRPCategoriesVisibility() {
+    const rpFocused = document.getElementById('cb-rp-focused');
+    const rpRelated = [
+        { id: 'rp-style-main', section: 'category-rp-style' },
+        { id: 'writing-activity-main', section: 'category-writing-activity' },
+        { id: 'lore-requirement-main', section: 'category-lore-requirement' }
+    ];
+    const mustSelect = !rpFocused?.checked;
+
+    if (mustSelect) {
+        const rpCriteria = [
+            "railroad", "freeform", "sandbox", "narrative-driven", "simulationist", "tactical",
+            "high-activity", "moderate-activity", "low-activity",
+            "high-lore", "moderate-lore", "low-lore"
+        ];
+        rpCriteria.forEach(key => {
+            if (selectedCriteria.has(key)) {
+                selectedCriteria.delete(key);
+            }
+            const cb = document.querySelector(`.criteria-checkbox[data-criteria="${key}"]`);
+            if (cb) cb.checked = false;
+            const btn = document.querySelector(`button[data-key="${key}"]`);
+            if (btn) btn.classList.remove('active-sub');
+        });
+        updateRankingPanel();
+    }
+
+    rpRelated.forEach(({ id, section }) => {
+        const catSection = document.getElementById(section);
+        const btn = catSection?.querySelector('button.main-category');
+        const disabledMsg = btn?.querySelector('.category-disabled-message');
+        if (catSection) {
+            if (mustSelect) {
+                catSection.classList.add('rp-disabled');
+                if (disabledMsg) {
+                    disabledMsg.textContent = 'Select "RP-Focused" in Play Style to unlock this category.';
+                    disabledMsg.style.display = 'inline-block';
+                }
+                catSection.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                    cb.disabled = true;
+                });
+            } else {
+                catSection.classList.remove('rp-disabled');
+                if (disabledMsg) {
+                    disabledMsg.textContent = '';
+                    disabledMsg.style.display = 'none';
+                }
+                catSection.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+                    cb.disabled = false;
+                });
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const rpFocused = document.getElementById('cb-rp-focused');
+    if (rpFocused) rpFocused.addEventListener('change', updateRPCategoriesVisibility);
+    updateRPCategoriesVisibility();
+
+    function updateCategoryVisibilityBySelection() {
+        const tabContent = document.getElementById('tab-content-categories');
+        const main = document.querySelector('main');
+        const playStyleCheckboxes = document.querySelectorAll('#play-style-main .criteria-checkbox');
+        const anyChecked = Array.from(playStyleCheckboxes).some(cb => cb.checked);
+        if (anyChecked) {
+            tabContent.classList.add('categories-unlocked');
+            if (main) main.classList.remove('only-play-style');
+        } else {
+            tabContent.classList.remove('categories-unlocked');
+            if (main) main.classList.add('only-play-style');
+        }
+    }
+
+    document.querySelectorAll('#play-style-main .criteria-checkbox').forEach(cb => {
+        cb.addEventListener('change', updateCategoryVisibilityBySelection);
+    });
+    updateCategoryVisibilityBySelection();
 });
