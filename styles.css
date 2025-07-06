@@ -66,7 +66,6 @@ main.only-play-style {
     transition: opacity 0.2s, filter 0.2s;
 }
 
-/* Remove old tooltip code for .category.rp-disabled */
 .category.rp-disabled[data-tooltip] { position: relative; }
 .category.rp-disabled[data-tooltip]:hover::after,
 .category.rp-disabled[data-tooltip]:focus::after,

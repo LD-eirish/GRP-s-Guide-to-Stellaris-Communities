@@ -636,27 +636,130 @@
     W.I.P. DO NOT SUBMIT. This Page is for test purposes only.
   </div>
           <h2>Submit Your Community</h2>
-          <!-- Google Forms integration -->
           <form id="submit-community-form"
         action="https://docs.google.com/forms/d/e/1FAIpQLSfLvWL9-K8B3h_vEDMyDigMzhZnYpASr3Q9gGuBf3JkCnSACQ/formResponse"
         method="POST"
         target="hidden_iframe"
         onsubmit="return submitCommunityForm();"
-        autocomplete="off">
-    <label>
-      Community Name:<br>
-      <input type="text" name="entry.1241345937" required style="width:90%;margin-bottom:0.7em;">
-    </label><br>
-    <label>
-      Description:<br>
-      <textarea name="entry.1255750588" rows="3" required style="width:90%;margin-bottom:0.7em;"></textarea>
-    </label><br>
-    <label>
-      Categories (comma separated):<br>
-      <input type="text" name="entry.1210572624" style="width:90%;margin-bottom:0.7em;">
-    </label><br>
-    <button type="submit">Submit</button>
-    <div id="submit-community-message" style="margin-top:1em;color:#ffd580;"></div>
+        autocomplete="off"
+        style="background:#23272b; border-radius:12px; box-shadow:0 2px 12px #0004; padding:2em 2em 1.5em 2em; max-width:600px; margin:auto;"
+      >
+    <div style="display:flex; flex-direction:column; gap:1.2em;">
+      <label style="font-weight:bold; color:#ffd580; font-size:1.08em; max-width:420px;">
+        Community Name:
+        <input type="text" name="entry.1241345937" required style="width:100%;max-width:420px;margin-top:0.4em;margin-bottom:0.1em;padding:0.6em 1em;border-radius:7px;border:1.5px solid #444;background:#181c1f;color:#fff;font-size:1.07em;">
+      </label>
+      <label style="font-weight:bold; color:#ffd580; font-size:1.08em; max-width:420px;">
+        Description:
+        <textarea name="entry.1255750588" rows="14" required style="width:100%;max-width:420px;margin-top:0.4em;margin-bottom:0.1em;padding:0.7em 1em;border-radius:7px;border:1.5px solid #444;background:#181c1f;color:#fff;font-size:1.07em;resize:vertical;min-height:280px;"></textarea>
+      </label>
+      <label style="font-weight:bold; color:#ffd580; font-size:1.08em; max-width:420px;">
+        Discord Link:
+        <input type="url" name="entry.987654321" placeholder="https://discord.gg/yourcommunity" style="width:100%;max-width:420px;margin-top:0.4em;margin-bottom:0.1em;padding:0.6em 1em;border-radius:7px;border:1.5px solid #444;background:#181c1f;color:#fff;font-size:1.07em;">
+      </label>
+      <label style="font-weight:bold; color:#ffd580; font-size:1.08em; max-width:420px;">
+        Preview Image URL:
+        <input type="url" name="entry.192837465" placeholder="https://example.com/image.png" style="width:100%;max-width:420px;margin-top:0.4em;margin-bottom:0.1em;padding:0.6em 1em;border-radius:7px;border:1.5px solid #444;background:#181c1f;color:#fff;font-size:1.07em;">
+      </label>
+      <label style="font-weight:bold; color:#ffd580; font-size:1.08em;">
+        Categories:
+        <div id="submit-categories-list" style="margin-top:0.5em; margin-bottom:0.7em; background:#23272b; border-radius:10px; padding:1.2em 1em; max-width:520px; box-shadow:0 2px 10px #0003;">
+          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:0.7em 1.2em;">
+            <div style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
+              <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">Play Style</div>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="RP-Focused" id="submit-rp-focused"> RP-Focused</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Competitive Multiplayer"> Competitive Multiplayer</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Casual Multiplayer"> Casual Multiplayer</label>
+            </div>
+            <div id="submit-rp-style-group" style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
+              <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">RP Style</div>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Railroad" class="rp-dependent"> Railroad</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Freeform" class="rp-dependent"> Freeform</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Sandbox" class="rp-dependent"> Sandbox</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Narrative-Driven" class="rp-dependent"> Narrative-Driven</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Simulationist" class="rp-dependent"> Simulationist</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Tactical" class="rp-dependent"> Tactical</label>
+            </div>
+            <div id="submit-writing-activity-group" style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
+              <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">Writing Activity</div>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="High Activity" class="rp-dependent"> High Activity</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Moderate Activity" class="rp-dependent"> Moderate Activity</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Low Activity" class="rp-dependent"> Low Activity</label>
+            </div>
+            <div id="submit-lore-requirement-group" style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
+              <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">Lore Requirement</div>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="High Lore Demand" class="rp-dependent"> High Lore Demand</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Moderate Lore Demand" class="rp-dependent"> Moderate Lore Demand</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Low Lore Demand" class="rp-dependent"> Low Lore Demand</label>
+            </div>
+            <div style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
+              <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">Community Size</div>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Large Communities"> Large Communities</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Medium Communities"> Medium Communities</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Small Communities"> Small Communities</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Exclusive Communities"> Exclusive Communities</label>
+            </div>
+            <div style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
+              <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">Player Experience</div>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Beginner-Friendly"> Beginner-Friendly</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Intermediate"> Intermediate</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Advanced/Expert"> Advanced/Expert</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Mixed Skill Level"> Mixed Skill Level</label>
+            </div>
+            <div style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
+              <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">Mod Usage</div>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Vanilla"> Vanilla</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Lightly Modded"> Lightly Modded</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Heavily Modded"> Heavily Modded</label>
+            </div>
+            <div style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
+              <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">Language</div>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="English-Speaking"> English-Speaking</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Non-English Speaking"> Non-English Speaking</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Multilingual"> Multilingual</label>
+            </div>
+            <div style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
+              <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">Region</div>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Regional Groups"> Regional Groups</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Global Groups"> Global Groups</label>
+            </div>
+            <div style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
+              <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">Session Type</div>
+              <label id="submit-session-type-group" style="color:#e0e0e0;">
+                <input type="checkbox" name="entry.1210572624" value="Voice RP" class="rp-dependent"> Voice RP
+              </label><br>
+              <label style="color:#e0e0e0;">
+                <input type="checkbox" name="entry.1210572624" value="Text-Based RP" class="rp-dependent"> Text-Based RP
+              </label><br>
+              <label style="color:#e0e0e0;">
+                <input type="checkbox" name="entry.1210572624" value="Mixed" class="rp-dependent"> Mixed
+              </label>
+            </div>
+            <div style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
+              <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">Campaigns</div>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Single Campaign"> Single Campaign</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Multiple Campaigns"> Multiple Campaigns</label>
+            </div>
+            <div style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
+              <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">Moderation</div>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Strict Moderation"> Strict Moderation</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Relaxed Moderation"> Relaxed Moderation</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Community-Guided"> Community-Guided</label>
+            </div>
+            <div style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
+              <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">Session Frequency</div>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Multiple a Week"> Multiple a Week</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Weekly"> Weekly</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Bi-Monthly"> Bi-Monthly</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Monthly"> Monthly</label><br>
+              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Other"> Other</label>
+            </div>
+          </div>
+        </div>
+      </label>
+      <button type="submit" style="margin-top:0.7em;padding:0.6em 2em;font-size:1.1em;border-radius:8px;background:#ffd580;color:#23272b;font-weight:bold;border:none;box-shadow:0 2px 8px #0002;cursor:pointer;">Submit</button>
+      <div id="submit-community-message" style="margin-top:1em;color:#ffd580;"></div>
+    </div>
   </form>
   <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" title="Hidden iframe for form submission"></iframe>
   <p style="font-size:0.95em;color:#aaa;margin-top:1em;">
@@ -723,9 +826,46 @@
         msg.style.color = "#6be672";
         setTimeout(function() {
           document.getElementById('submit-community-form').reset();
+          updateSubmitRPCategoriesVisibility();
         }, 1000);
         return true; // allow form to submit to Google Forms
       }
+
+      function updateSubmitRPCategoriesVisibility() {
+        var rpFocused = document.getElementById('submit-rp-focused');
+        var enabled = rpFocused && rpFocused.checked;
+        var rpInputs = document.querySelectorAll('#submit-categories-list .rp-dependent');
+        var rpGroups = [
+          document.getElementById('submit-rp-style-group'),
+          document.getElementById('submit-writing-activity-group'),
+          document.getElementById('submit-lore-requirement-group'),
+          document.getElementById('submit-session-type-group').parentElement
+        ];
+        rpInputs.forEach(function(input) {
+          input.disabled = !enabled;
+          if (!enabled) input.checked = false;
+        });
+        rpGroups.forEach(function(group) {
+          if (group) {
+            if (!enabled) {
+              group.style.opacity = "0.5";
+              group.style.pointerEvents = "none";
+              group.style.filter = "grayscale(0.7)";
+            } else {
+              group.style.opacity = "";
+              group.style.pointerEvents = "";
+              group.style.filter = "";
+            }
+          }
+        });
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        var rpFocused = document.getElementById('submit-rp-focused');
+        if (rpFocused) {
+          rpFocused.addEventListener('change', updateSubmitRPCategoriesVisibility);
+          updateSubmitRPCategoriesVisibility();
+        }
+      });
       // ...existing code...
     </script>
   </body>
