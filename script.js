@@ -368,10 +368,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const rankingPanel = document.getElementById('ranking-panel');
     const rankingBtn = document.getElementById('ranking-toggle-btn');
     let rankingVisible = true; // Start opened
+
     function updateRankingBtn() {
-        rankingBtn.textContent = "Matches";
+        if (rankingVisible) {
+            rankingBtn.textContent = "Hide Matches";
+            rankingBtn.classList.add('active');
+        } else {
+            rankingBtn.textContent = "Show Matches";
+            rankingBtn.classList.remove('active');
+        }
         rankingBtn.setAttribute('aria-expanded', rankingVisible ? 'true' : 'false');
     }
+
     rankingBtn.addEventListener('click', () => {
         rankingVisible = !rankingVisible;
         if (rankingVisible) {
@@ -381,6 +389,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         updateRankingBtn();
     });
+
     // Show panel by default
     rankingPanel.classList.remove('hide');
     updateRankingBtn();
