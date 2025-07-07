@@ -31,7 +31,6 @@
     border-color: #ffd70055;
 }
 
-/* Remove the old tab styling - now using proper grid layout */
 #tab-content-categories,
 #tab-content-communities,
 #tab-content-submit,
@@ -129,6 +128,13 @@
     margin-left: var(--spacing-xl);
     max-width: 600px;
     font-size: 1rem;
+}
+
+.subcategory-btn:not(.active-sub):not(.active-desc) {
+    background: var(--color-bg-tertiary);
+    color: #fff;
+    border-color: #444;
+    box-shadow: var(--box-shadow-sm);
 }
 
 /* Panels */
