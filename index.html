@@ -3,34 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stellaris Community Categories</title>
+    <title>Stellaris Community Guide</title>
     <link rel="stylesheet" href="styles.css" />
-    <!-- Add this style for the info icon (can be in <head> or your CSS file) -->
-    <style>
-      .info-icon {
-        display: inline-block;
-        margin-left: 0.6em;
-        font-size: 1.1em;
-        color: #ffd700;
-        vertical-align: middle;
-        pointer-events: none;
-        user-select: none;
-        opacity: 0.92;
-        transition: color 0.2s;
-      }
-      .subcategory-btn.active-desc .info-icon {
-        animation: info-pop 0.5s cubic-bezier(.4,0,.2,1);
-      }
-      @keyframes info-pop {
-        0% { transform: scale(0.7); opacity: 0; }
-        60% { transform: scale(1.2); opacity: 1; }
-        100% { transform: scale(1); opacity: 1; }
-      }
-    </style>
   </head>
   <body>
     <header>
-      <h1>GRP's Guide to Stellaris MP Communities</h1>
+      <h1>Stellaris Community Guide</h1>
     </header>
     <div id="wrapper">
       <main>
@@ -59,7 +37,7 @@
               onkeydown="handleKeyDown(event, 'play-style-main')"
               type="button"
             >
-              1. Play Style [*]
+              1. Play Style
             </button>
             <div class="dropdown-content" id="play-style-main">
               <div class="multi-note">
@@ -155,48 +133,46 @@
             </div>
           </section>
 
-          <!-- 3. Writing Activity and Volume -->
-          <section class="category" id="category-writing-activity">
+          <!-- 3. Session Type (was 4, now 3) -->
+          <section class="category" id="category-session-type">
             <button
               class="dropdown-toggle main-category"
               aria-expanded="false"
-              aria-controls="writing-activity-main"
-              onclick="toggleDropdown('writing-activity-main')"
-              onkeydown="handleKeyDown(event, 'writing-activity-main')"
+              aria-controls="session-type-main"
+              onclick="toggleDropdown('session-type-main')"
+              onkeydown="handleKeyDown(event, 'session-type-main')"
               type="button"
             >
-              3. Writing Activity and Volume
+              3. Session Type
               <span class="category-disabled-message" style="display:none;margin-left:1em;"></span>
             </button>
-            <div class="dropdown-content" id="writing-activity-main">
+            <div class="dropdown-content" id="session-type-main">
               <div class="category-option">
-                <input class="criteria-checkbox" type="checkbox" data-criteria="high-activity" id="cb-high-activity" />
-                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="high-activity"
-                  onclick="toggleDropdown('high-activity'); showDescription(this)" data-key="high-activity" type="button" tabindex="0">
-                  High Activity
+                <input class="criteria-checkbox" type="checkbox" data-criteria="voice-rp" id="cb-voice-rp" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="voice-rp"
+                  onclick="toggleDropdown('voice-rp'); showDescription(this)" data-key="voice-rp" type="button" tabindex="0">
+                  Voice RP
                 </button>
               </div>
-              <div class="dropdown-content" id="high-activity"></div>
+              <div class="dropdown-content" id="voice-rp"></div>
               <div class="category-option">
-                <input class="criteria-checkbox" type="checkbox" data-criteria="moderate-activity" id="cb-moderate-activity" />
-                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="moderate-activity"
-                  onclick="toggleDropdown('moderate-activity'); showDescription(this)" data-key="moderate-activity" type="button" tabindex="0">
-                  Moderate Activity
+                <input class="criteria-checkbox" type="checkbox" data-criteria="text-based-rp" id="cb-text-based-rp" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="text-based-rp"
+                  onclick="toggleDropdown('text-based-rp'); showDescription(this)" data-key="text-based-rp" type="button" tabindex="0">
+                  Text-Based RP
                 </button>
               </div>
-              <div class="dropdown-content" id="moderate-activity"></div>
+              <div class="dropdown-content" id="text-based-rp"></div>
               <div class="category-option">
-                <input class="criteria-checkbox" type="checkbox" data-criteria="low-activity" id="cb-low-activity" />
-                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="low-activity"
-                  onclick="toggleDropdown('low-activity'); showDescription(this)" data-key="low-activity" type="button" tabindex="0">
-                  Low Activity
+                <input class="criteria-checkbox" type="checkbox" data-criteria="mixed-rp" id="cb-mixed-rp" />
+                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="mixed-rp"
+                  onclick="toggleDropdown('mixed-rp'); showDescription(this)" data-key="mixed-rp" type="button" tabindex="0">
+                  Mixed
                 </button>
               </div>
-              <div class="dropdown-content" id="low-activity"></div>
+              <div class="dropdown-content" id="mixed-rp"></div>
             </div>
           </section>
-
-          <!-- 4. Lore Requirement -->
           <section class="category" id="category-lore-requirement">
             <button
               class="dropdown-toggle main-category"
@@ -445,47 +421,7 @@
             </div>
           </section>
 
-          <!-- 10. Session Type -->
-          <section class="category">
-            <button
-              class="dropdown-toggle main-category"
-              aria-expanded="false"
-              aria-controls="session-type-main"
-              onclick="toggleDropdown('session-type-main')"
-              onkeydown="handleKeyDown(event, 'session-type-main')"
-              type="button"
-            >
-              10. Session Type
-            </button>
-            <div class="dropdown-content" id="session-type-main">
-              <div class="category-option">
-                <input class="criteria-checkbox" type="checkbox" data-criteria="voice-rp" id="cb-voice-rp" />
-                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="voice-rp"
-                  onclick="toggleDropdown('voice-rp'); showDescription(this)" data-key="voice-rp" type="button" tabindex="0">
-                  Voice RP
-                </button>
-              </div>
-              <div class="dropdown-content" id="voice-rp"></div>
-              <div class="category-option">
-                <input class="criteria-checkbox" type="checkbox" data-criteria="text-based-rp" id="cb-text-based-rp" />
-                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="text-based-rp"
-                  onclick="toggleDropdown('text-based-rp'); showDescription(this)" data-key="text-based-rp" type="button" tabindex="0">
-                  Text-Based RP
-                </button>
-              </div>
-              <div class="dropdown-content" id="text-based-rp"></div>
-              <div class="category-option">
-                <input class="criteria-checkbox" type="checkbox" data-criteria="mixed-rp" id="cb-mixed-rp" />
-                <button class="dropdown-toggle subcategory-btn" aria-expanded="false" aria-controls="mixed-rp"
-                  onclick="toggleDropdown('mixed-rp'); showDescription(this)" data-key="mixed-rp" type="button" tabindex="0">
-                  Mixed
-                </button>
-              </div>
-              <div class="dropdown-content" id="mixed-rp"></div>
-            </div>
-          </section>
-
-          <!-- 11. Concurrent Campaigns -->
+          <!-- 10. Concurrent Campaigns -->
           <section class="category">
             <button
               class="dropdown-toggle main-category"
@@ -495,7 +431,7 @@
               onkeydown="handleKeyDown(event, 'concurrent-campaigns-main')"
               type="button"
             >
-              11. Concurrent Campaigns
+              10. Concurrent Campaigns
             </button>
             <div class="dropdown-content" id="concurrent-campaigns-main">
               <div class="category-option">
@@ -517,7 +453,7 @@
             </div>
           </section>
 
-          <!-- 12. Moderation Style -->
+          <!-- 11. Moderation Style -->
           <section class="category">
             <button
               class="dropdown-toggle main-category"
@@ -527,7 +463,7 @@
               onkeydown="handleKeyDown(event, 'moderation-style-main')"
               type="button"
             >
-              12. Moderation Style
+              11. Moderation Style
             </button>
             <div class="dropdown-content" id="moderation-style-main">
               <div class="category-option">
@@ -557,7 +493,7 @@
             </div>
           </section>
 
-          <!-- 13. Session Frequency -->
+          <!-- 12. Session Frequency -->
           <section class="category">
             <button
               class="dropdown-toggle main-category"
@@ -567,7 +503,7 @@
               onkeydown="handleKeyDown(event, 'session-frequency-main')"
               type="button"
             >
-              13. Session Frequency
+              12. Session Frequency
             </button>
             <div class="dropdown-content" id="session-frequency-main">
               <div class="category-option">
@@ -615,21 +551,10 @@
         </div>
         <div id="tab-content-communities" style="display:none;">
           <div style="background:#ffd700;color:#23272b;font-weight:bold;padding:1em 1.5em;margin-bottom:1.2em;border-radius:8px;text-align:center;box-shadow:0 2px 8px #0002;">
-    W.I.P. This Page is for test purposes only. <br></br> It does not represent the final design and layout.
-  </div>
-          <h2>All Stellaris Communities</h2>
-          <table id="communities-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Categories</th>
-              </tr>
-            </thead>
-            <tbody>
-              <!-- Populated by script.js -->
-            </tbody>
-          </table>
+            W.I.P. This Page is for test purposes only. <br><br> It does not represent the final design and layout.
+          </div>
+          <h2 style="margin-bottom:0.7em;">Listed Stellaris Communities</h2>
+          <div id="communities-list"></div>
         </div>
         <div id="tab-content-submit" style="display:none;">
           <div style="background:#ffd700;color:#23272b;font-weight:bold;padding:1em 1.5em;margin-bottom:1.2em;border-radius:8px;text-align:center;box-shadow:0 2px 8px #0002;">
@@ -658,7 +583,7 @@
         <input type="url" name="entry.987654321" placeholder="https://discord.gg/yourcommunity" style="width:100%;max-width:420px;margin-top:0.4em;margin-bottom:0.1em;padding:0.6em 1em;border-radius:7px;border:1.5px solid #444;background:#181c1f;color:#fff;font-size:1.07em;">
       </label>
       <label style="font-weight:bold; color:#ffd580; font-size:1.08em; max-width:420px;">
-        Preview Image URL:
+        Community Banner:
         <input type="url" name="entry.192837465" placeholder="https://example.com/image.png" style="width:100%;max-width:420px;margin-top:0.4em;margin-bottom:0.1em;padding:0.6em 1em;border-radius:7px;border:1.5px solid #444;background:#181c1f;color:#fff;font-size:1.07em;">
       </label>
       <label style="font-weight:bold; color:#ffd580; font-size:1.08em;">
@@ -679,12 +604,6 @@
               <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Narrative-Driven" class="rp-dependent"> Narrative-Driven</label><br>
               <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Simulationist" class="rp-dependent"> Simulationist</label><br>
               <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Tactical" class="rp-dependent"> Tactical</label>
-            </div>
-            <div id="submit-writing-activity-group" style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
-              <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">Writing Activity</div>
-              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="High Activity" class="rp-dependent"> High Activity</label><br>
-              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Moderate Activity" class="rp-dependent"> Moderate Activity</label><br>
-              <label style="color:#e0e0e0;"><input type="checkbox" name="entry.1210572624" value="Low Activity" class="rp-dependent"> Low Activity</label>
             </div>
             <div id="submit-lore-requirement-group" style="border:2px solid #ffd700;border-radius:8px;padding:0.7em 0.7em 0.5em 0.7em;">
               <div style="font-weight:bold;color:#ffd700;margin-bottom:0.3em;font-size:1.07em;">Lore Requirement</div>
@@ -769,7 +688,7 @@
         <div id="tab-content-about" style="display:none;">
           <h2>About This Project</h2>
           <p>
-            This guide helps you explore and match with Stellaris multiplayer communities based on your preferences. It also aids Stellaris communities to represent themselves, find more users, and discover potential for collaboration with other groups. It is designed to make it easier for both new and existing communities to connect, grow, and share their unique play styles and events.
+            This guide helps you explore and match with Stellaris multiplayer communities based on your preferences. It also aids Stellaris communities to represent themselves, find more users, and discover potential for collaboration with other groups.
             <br><br>
             <br><br>
             <strong>Features:</strong>
@@ -819,7 +738,13 @@
     </footer>
     <script src="script.js"></script>
     <script>
-      // ...existing code...
+      document.addEventListener('DOMContentLoaded', function() {
+        var rpFocused = document.getElementById('submit-rp-focused');
+        if (rpFocused) {
+          rpFocused.addEventListener('change', updateSubmitRPCategoriesVisibility);
+          updateSubmitRPCategoriesVisibility();
+        }
+      });
       function submitCommunityForm() {
         var msg = document.getElementById('submit-community-message');
         msg.textContent = "Thank you for your submission! Your community will be reviewed.";
@@ -828,18 +753,16 @@
           document.getElementById('submit-community-form').reset();
           updateSubmitRPCategoriesVisibility();
         }, 1000);
-        return true; // allow form to submit to Google Forms
+        return true;
       }
-
       function updateSubmitRPCategoriesVisibility() {
         var rpFocused = document.getElementById('submit-rp-focused');
         var enabled = rpFocused && rpFocused.checked;
         var rpInputs = document.querySelectorAll('#submit-categories-list .rp-dependent');
         var rpGroups = [
           document.getElementById('submit-rp-style-group'),
-          document.getElementById('submit-writing-activity-group'),
-          document.getElementById('submit-lore-requirement-group'),
-          document.getElementById('submit-session-type-group').parentElement
+          document.getElementById('submit-session-type-group').parentElement,
+          document.getElementById('submit-lore-requirement-group')
         ];
         rpInputs.forEach(function(input) {
           input.disabled = !enabled;
@@ -859,15 +782,9 @@
           }
         });
       }
-      document.addEventListener('DOMContentLoaded', function() {
-        var rpFocused = document.getElementById('submit-rp-focused');
-        if (rpFocused) {
-          rpFocused.addEventListener('change', updateSubmitRPCategoriesVisibility);
-          updateSubmitRPCategoriesVisibility();
-        }
-      });
-      // ...existing code...
     </script>
+  </body>
+</html>
   </body>
 </html>
 

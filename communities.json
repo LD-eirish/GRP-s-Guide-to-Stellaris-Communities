@@ -1,0 +1,167 @@
+[
+    {
+        "name": "Test Community 1",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+1",
+        "discord": "https://discord.gg/example1",
+        "categories": [
+            "RP-Focused", "Large Communities", "Beginner-Friendly", "Vanilla", "English-Speaking",
+            "Global Groups", "Freeform", "Text-Based RP", "Multiple Campaigns",
+            "Moderate Activity", "Moderate Lore Demand", "Relaxed Moderation", "Weekly"
+        ]
+    },
+    {
+        "name": "Test Community 2",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+2",
+        "discord": "https://discord.gg/example2",
+        "categories": [
+            "Competitive Multiplayer", "Medium Communities", "Advanced/Expert", "Lightly Modded", "English-Speaking",
+            "Regional Groups", "Tactical", "Voice RP", "Single Campaign",
+            "High Activity", "High Lore Demand", "Strict Moderation", "Multiple a Week"
+        ]
+    },
+    {
+        "name": "Test Community 3",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+3",
+        "discord": "https://discord.gg/example3",
+        "categories": [
+            "Casual Multiplayer", "Small Communities", "Mixed Skill Level", "Heavily Modded", "Non-English Speaking",
+            "Global Groups", "Sandbox", "Mixed RP", "Multiple Campaigns",
+            "Low Activity", "Low Lore Demand", "Community-Guided", "Bi-Monthly"
+        ]
+    },
+    {
+        "name": "Test Community 4",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+4",
+        "discord": "https://discord.gg/example4",
+        "categories": [
+            "RP-Focused", "Medium Communities", "Intermediate", "Lightly Modded", "English-Speaking",
+            "Global Groups", "Narrative-Driven", "Text-Based RP", "Single Campaign",
+            "Moderate Activity", "High Lore Demand", "Relaxed Moderation", "Bi-Monthly"
+        ]
+    },
+    {
+        "name": "Test Community 5",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+5",
+        "discord": "https://discord.gg/example5",
+        "categories": [
+            "Competitive Multiplayer", "Large Communities", "Advanced/Expert", "Vanilla", "English-Speaking",
+            "Global Groups", "Tactical", "Voice RP", "Multiple Campaigns",
+            "High Activity", "Low Lore Demand", "Strict Moderation", "Multiple a Week"
+        ]
+    },
+    {
+        "name": "Test Community 6",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+6",
+        "discord": "https://discord.gg/example6",
+        "categories": [
+            "Casual Multiplayer", "Medium Communities", "Mixed Skill Level", "Vanilla", "Multilingual",
+            "Global Groups", "Sandbox", "Mixed RP", "Multiple Campaigns",
+            "Low Activity", "Low Lore Demand", "Community-Guided", "Monthly"
+        ]
+    },
+    {
+        "name": "Test Community 7",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+7",
+        "discord": "https://discord.gg/example7",
+        "categories": [
+            "RP-Focused", "Small Communities", "Advanced/Expert", "Heavily Modded", "Multilingual",
+            "Regional Groups", "Simulationist", "Text-Based RP", "Single Campaign",
+            "Moderate Activity", "High Lore Demand", "Strict Moderation", "Weekly"
+        ]
+    },
+    {
+        "name": "Test Community 8",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+8",
+        "discord": "https://discord.gg/example8",
+        "categories": [
+            "Casual Multiplayer", "Large Communities", "Beginner-Friendly", "Vanilla", "English-Speaking",
+            "Global Groups", "Freeform", "Voice RP", "Multiple Campaigns",
+            "Moderate Activity", "Low Lore Demand", "Relaxed Moderation", "Weekly"
+        ]
+    },
+    {
+        "name": "Test Community 9",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+9",
+        "discord": "https://discord.gg/example9",
+        "categories": [
+            "RP-Focused", "Exclusive Communities", "Advanced/Expert", "Lightly Modded", "English-Speaking",
+            "Global Groups", "Narrative-Driven", "Text-Based RP", "Single Campaign",
+            "High Activity", "High Lore Demand", "Strict Moderation", "Bi-Monthly"
+        ]
+    },
+    {
+        "name": "Test Community 10",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+10",
+        "discord": "https://discord.gg/example10",
+        "categories": [
+            "Casual Multiplayer", "Medium Communities", "Mixed Skill Level", "Heavily Modded", "Multilingual",
+            "Regional Groups", "Sandbox", "Voice RP", "Multiple Campaigns",
+            "Moderate Activity", "Moderate Lore Demand", "Community-Guided", "Weekly"
+        ]
+    },
+    {
+        "name": "Test Community 11",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+11",
+        "discord": "https://discord.gg/example11",
+        "categories": [
+            "Competitive Multiplayer", "Small Communities", "Advanced/Expert", "Vanilla", "English-Speaking",
+            "Global Groups", "Tactical", "Voice RP", "Single Campaign",
+            "High Activity", "Low Lore Demand", "Strict Moderation", "Multiple a Week"
+        ]
+    },
+    {
+        "name": "Test Community 12",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+12",
+        "discord": "https://discord.gg/example12",
+        "categories": [
+            "Casual Multiplayer", "Large Communities", "Intermediate", "Heavily Modded", "English-Speaking",
+            "Global Groups", "Freeform", "Mixed RP", "Multiple Campaigns",
+            "Moderate Activity", "Moderate Lore Demand", "Relaxed Moderation", "Weekly"
+        ]
+    },
+    {
+        "name": "Test Community 13",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+13",
+        "discord": "https://discord.gg/example13",
+        "categories": [
+            "RP-Focused", "Small Communities", "Intermediate", "Lightly Modded", "English-Speaking",
+            "Global Groups", "Narrative-Driven", "Text-Based RP", "Single Campaign",
+            "Low Activity", "High Lore Demand", "Relaxed Moderation", "Monthly"
+        ]
+    },
+    {
+        "name": "Test Community 14",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+14",
+        "discord": "https://discord.gg/example14",
+        "categories": [
+            "Casual Multiplayer", "Medium Communities", "Mixed Skill Level", "Vanilla", "English-Speaking",
+            "Global Groups", "Sandbox", "Voice RP", "Multiple Campaigns",
+            "Low Activity", "Low Lore Demand", "Community-Guided", "Bi-Monthly"
+        ]
+    },
+    {
+        "name": "Test Community 15",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "banner": "https://via.placeholder.com/120x60?text=Banner+15",
+        "discord": "https://discord.gg/example15",
+        "categories": [
+            "RP-Focused", "Medium Communities", "Mixed Skill Level", "Lightly Modded", "Non-English Speaking",
+            "Regional Groups", "Simulationist", "Text-Based RP", "Single Campaign",
+            "Moderate Activity", "Moderate Lore Demand", "Relaxed Moderation", "Weekly"
+        ]
+    }
+]
