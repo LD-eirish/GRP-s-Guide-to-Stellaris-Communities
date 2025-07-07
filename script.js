@@ -99,9 +99,9 @@ function showDescription(button) {
         "lightly-modded": "Communities that employ a few minor or cosmetic mods for a smoother experience.",
         "heavily-modded": "Communities featuring extensive mod lists that add mechanics, lore, or new content.",
         // Language
-        "english-speaking": "Communities primarily using English for role-play and general interaction.",
-        "non-english-speaking": "Communities that use languages other than English for all RP and discussions. Such as: french, spanish, german, etc.",
-        "multilingual": "Communities open to multiple languages, fostering an international environment.",
+        "english-speaking": "Communities primarily using English for their communication.",
+        "non-english-speaking": "Communities that use languages other than English for all interactions. Such as: french, spanish, german, etc.",
+        "multilingual": "Communities open to multiple languages.",
         // Geographic Region
         "regional-groups": "Communities organized by region or country, aligning time zones.",
         "global-groups": "Communities uniting players worldwide.",
