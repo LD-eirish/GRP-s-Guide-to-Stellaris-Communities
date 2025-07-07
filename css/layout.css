@@ -1,0 +1,333 @@
+/* Layout Styles */
+#wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    min-height: 100vh;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    width: 100.5vw;
+    max-width: 100.5vw;
+    overflow-x: hidden;
+    position: relative;
+}
+
+#app-container {
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "main sidebar"
+        "footer footer";
+    grid-template-columns: 1fr 420px;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+    background: var(--color-bg-primary);
+}
+
+/* Header */
+#main-header {
+    grid-area: header;
+    background: var(--color-bg-tertiary);
+    border-bottom: 2.5px solid #ffd70033;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: var(--spacing-md) 0;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+#main-header h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: var(--color-accent-primary);
+    text-shadow: 0 2px 8px #0008;
+}
+
+/* Navigation */
+#main-navigation {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.nav-btn {
+    background: var(--color-bg-secondary);
+    color: var(--color-accent-primary);
+    border: 2.5px solid #ffd70033;
+    border-radius: var(--border-radius-md);
+    padding: 0.7em var(--spacing-lg);
+    font-size: 1.1em;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.nav-btn.active,
+.nav-btn:focus {
+    background: var(--color-accent-primary);
+    color: var(--color-bg-tertiary);
+    border-color: #ffd70066;
+    transform: translateY(-1px);
+}
+
+.nav-btn:hover {
+    border-color: #ffd70055;
+    transform: translateY(-1px);
+}
+
+/* Main Content Area */
+#main-content {
+    grid-area: main;
+    background: var(--color-bg-primary);
+    overflow-y: auto;
+    position: relative;
+    padding: var(--spacing-lg);
+    min-height: 0;
+    margin-top: 120px;
+}
+
+/* Add extra top padding for about tab to prevent title from being cut off */
+#tab-content-about.tab-panel {
+    padding-top: calc(var(--spacing-xl) + 40px);
+}
+
+.content-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Tab Panels */
+.tab-panel {
+    display: none;
+    background: var(--color-bg-secondary);
+    border-radius: var(--border-radius-lg);
+    border: 2.5px solid #ffd70033;
+    padding: var(--spacing-xl);
+    min-height: 60vh;
+    max-height: none;
+    box-shadow: var(--box-shadow-lg);
+}
+
+.tab-panel.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Remove animation for communities tab to prevent card movement */
+#tab-content-communities.active {
+    animation: none;
+}
+
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Sidebar */
+#sidebar {
+    grid-area: sidebar;
+    background: var(--color-bg-tertiary);
+    border-left: 2.5px solid #ffd70033;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 420px;
+    z-index: 50;
+    display: block;
+    overflow: hidden;
+    min-height: 100vh;
+    pointer-events: none; 
+}
+
+#sidebar-content {
+    position: fixed;
+    top: 120px;
+    right: 0;
+    width: 420px;
+    bottom: 0;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-height: calc(100vh - 120px);
+    pointer-events: auto; /* Allow interaction with content */
+}
+
+/* Move .sidebar-panel styles to #sidebar-content > .sidebar-panel */
+#sidebar-content .sidebar-panel {
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid #333;
+    flex-shrink: 0;
+    background: var(--color-bg-secondary);
+    margin: var(--spacing-sm);
+    border-radius: var(--border-radius-md);
+}
+
+#sidebar-content .sidebar-panel:last-of-type {
+    border-bottom: none;
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Footer */
+#main-footer {
+    grid-area: footer;
+    background: var(--color-bg-tertiary);
+    border-top: 2.5px solid #ffd70033;
+    text-align: center;
+    padding: var(--spacing-md) 0;
+    color: #888;
+    margin-top: 0;
+    height: 64px;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+}
+
+.footer-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-lg);
+}
+
+.footer-content p {
+    margin: 0;
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    #app-container {
+        grid-template-areas: 
+            "header"
+            "main"
+            "sidebar"
+            "footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto auto;
+    }
+    
+    #sidebar {
+        top: 120px;
+        width: 100vw;
+        left: 0;
+        right: 0;
+        border-left: none;
+        border-top: 2.5px solid #ffd70033;
+        max-height: calc(50vh - 64px);
+    }
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    #main-navigation {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .nav-btn {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+    }
+    
+    #main-content {
+        padding: var(--spacing-md);
+    }
+    
+    .tab-panel {
+        padding: var(--spacing-lg);
+    }
+}
+
+/* Dynamic layout adjustments */
+#app-container.communities-active {
+    grid-template-areas: 
+        "header header"
+        "main main"
+        "footer footer";
+    grid-template-columns: 1fr;
+}
+
+#app-container.communities-active #sidebar {
+    display: none !important;
+}
+
+/* Center content when sidebar is hidden (submit/about tabs) */
+#app-container:not(.communities-active) #main-content:has(.tab-panel:not(#tab-content-categories).active),
+#app-container.submit-active #main-content,
+#app-container.about-active #main-content {
+    grid-column: 1 / -1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-lg) var(--spacing-xl);
+}
+
+#app-container.submit-active #sidebar,
+#app-container.about-active #sidebar {
+    display: none !important;
+}
+
+.sidebar-panel:last-of-type {
+    border-bottom: none;
+    flex: 1;
+}
+
+/* Remove ranking toggle button styles */
+
+/* Ensure sidebar content is visible */
+#description-panel,
+#ranking-panel {
+    color: var(--color-text-primary);
+    background: var(--color-bg-secondary);
+}
+
+#ranking-panel h2 {
+    color: var(--color-accent-primary);
+    margin-top: 0;
+}
+
+/* Adjust main content to account for fixed sidebar */
+#app-container:not(.communities-active) #main-content {
+    margin-right: 420px;
+}
+
+#tab-content-communities,
+#tab-content-about,
+#tab-content-submit {
+    border-left: none; /* Remove left border to eliminate the slim black area */
+    border-right: 2.5px solid #ffd70033;
+}
+

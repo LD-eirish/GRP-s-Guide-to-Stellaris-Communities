@@ -1,0 +1,39 @@
+<div style="background:#ffd700;color:#23272b;font-weight:bold;padding:1em 1.5em;margin-bottom:1.2em;margin-top:1.2em;border-radius:8px;text-align:center;box-shadow:0 2px 8px #0002;">
+  W.I.P. DO NOT SUBMIT. This Page is for test purposes only.
+</div>
+<h2 style="margin-bottom:0.7em; color:#ffd700; border:2px solid #ffd700; border-radius:8px; padding:0.5em 0;">
+  Submit Your Community
+</h2>
+<form id="submit-community-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfLvWL9-K8B3h_vEDMyDigMzhZnYpASr3Q9gGuBf3JkCnSACQ/formResponse" method="POST" target="hidden_iframe" onsubmit="return submitCommunityForm();" autocomplete="off" style="background:#23272b; border-radius:12px; box-shadow:0 2px 12px #0004; padding:2em 2em 1.5em 2em; max-width:600px; margin:auto;">
+  <div style="display:flex; flex-direction:column; gap:1.2em;">
+    <label style="font-weight:bold; color:#ffd580; font-size:1.08em; max-width:420px;">
+      Community Name:
+      <input type="text" name="entry.1241345937" required style="width:100%;max-width:420px;margin-top:0.4em;margin-bottom:0.1em;padding:0.6em 1em;border-radius:7px;border:1.5px solid #444;background:#181c1f;color:#fff;font-size:1.07em;">
+    </label>
+    <label style="font-weight:bold; color:#ffd580; font-size:1.08em; max-width:420px;">
+      Description:
+      <textarea name="entry.1255750588" rows="14" required style="width:100%;max-width:420px;margin-top:0.4em;margin-bottom:0.1em;padding:0.7em 1em;border-radius:7px;border:1.5px solid #444;background:#181c1f;color:#fff;font-size:1.07em;resize:vertical;min-height:280px;"></textarea>
+    </label>
+    <label style="font-weight:bold; color:#ffd580; font-size:1.08em; max-width:420px;">
+      Discord Link:
+      <input type="url" name="entry.987654321" placeholder="https://discord.gg/yourcommunity" style="width:100%;max-width:420px;margin-top:0.4em;margin-bottom:0.1em;padding:0.6em 1em;border-radius:7px;border:1.5px solid #444;background:#181c1f;color:#fff;font-size:1.07em;">
+    </label>
+    <label style="font-weight:bold; color:#ffd580; font-size:1.08em; max-width:420px;">
+      Community Banner:
+      <input type="url" name="entry.192837465" placeholder="https://example.com/image.png" style="width:100%;max-width:420px;margin-top:0.4em;margin-bottom:0.1em;padding:0.6em 1em;border-radius:7px;border:1.5px solid #444;background:#181c1f;color:#fff;font-size:1.07em;">
+    </label>
+    
+    <fieldset id="submit-categories-fieldset" style="border:2px solid #ffd580;border-radius:8px;padding:1.5em;background:#1a1e23;margin:0;">
+      <legend style="color:#ffd580;font-weight:bold;font-size:1.08em;padding:0 0.5em;">Categories</legend>
+      <div id="submit-categories-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1em;margin-top:1em;">
+      </div>
+    </fieldset>
+    
+    <button type="submit" style="margin-top:0.7em;padding:0.6em 2em;font-size:1.1em;border-radius:8px;background:#ffd580;color:#23272b;font-weight:bold;border:none;box-shadow:0 2px 8px #0002;cursor:pointer;">Submit</button>
+    <div id="submit-community-message" style="margin-top:1em;color:#ffd580;"></div>
+  </div>
+</form>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" title="Hidden iframe for form submission"></iframe>
+<p style="font-size:0.95em;color:#aaa;margin-top:1em;">
+  Note: Submissions are sent via Google Forms and will be reviewed before being added to the public list.
+</p>

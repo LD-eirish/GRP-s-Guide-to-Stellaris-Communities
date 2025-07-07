@@ -119,7 +119,7 @@ function showDescription(button) {
     const panel = document.getElementById('description-panel');
     const anyExpanded = Array.from(document.querySelectorAll('.main-category')).some(btn => btn.getAttribute('aria-expanded') === 'true');
     if (anyExpanded) {
-        panel.innerHTML = `<span class="info-icon">&#9432;</span><div style="position:relative;">Loading description...</div>`;
+        panel.innerHTML = `<span class="info-icon">&#9432;</span><div>Loading description...</div>`;
         panel.classList.add('active');
     } else {
         panel.innerHTML = '';
@@ -138,11 +138,11 @@ function showDescription(button) {
         })
         .then(fallbackDescriptions => {
             let desc = fallbackDescriptions[key] || 'No description available.';
-            panel.innerHTML = `<span class="info-icon">&#9432;</span><div style="position:relative;">${desc}</div>`;
+            panel.innerHTML = `<span class="info-icon">&#9432;</span><div>${desc}</div>`;
         })
         .catch(error => {
             console.error('Error loading fallback descriptions:', error);
-            panel.innerHTML = `<span class="info-icon">&#9432;</span><div style="position:relative;">Failed to load description.</div>`;
+            panel.innerHTML = `<span class="info-icon">&#9432;</span><div>Failed to load description.</div>`;
         });
 }
 
@@ -156,112 +156,161 @@ document.querySelectorAll('.dropdown-toggle:not(.main-category)').forEach(btn =>
     });
 });
 
+async function loadHTMLContent() {
+    try {
+        const [categoriesHTML, communitiesHTML, submitHTML, aboutHTML] = await Promise.all([
+            fetch('html/categories.html').then(res => res.text()),
+            fetch('html/communities.html').then( res => res.text()),
+            fetch('html/submit.html').then(res => res.text()),
+            fetch('html/about.html').then(res => res.text())
+        ]);
+
+        document.getElementById('tab-content-categories').innerHTML = categoriesHTML;
+        document.getElementById('tab-content-communities').innerHTML = communitiesHTML;
+        document.getElementById('tab-content-submit').innerHTML = submitHTML;
+        document.getElementById('tab-content-about').innerHTML = aboutHTML;
+        
+        // Initialize form handlers after HTML is loaded
+        initializeFormHandlers();
+        
+    } catch (error) {
+        console.error('Error loading HTML content:', error);
+    }
+}
+
+function initializeFormHandlers() {
+    // Initialize submit categories
+    if (typeof window.initializeSubmitCategories === 'function') {
+        window.initializeSubmitCategories();
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    loadDescriptions();
-    loadCommunities();
-    loadCategoryHeadings();
+    loadHTMLContent().then(() => {
+        loadDescriptions();
+        loadCommunities();
+        loadCategoryHeadings();
 
-    document.querySelectorAll('.dropdown-content').forEach(div => {
-        div.style.display = 'none';
-    });
-    document.querySelectorAll('.dropdown-toggle').forEach(btn => {
-        btn.setAttribute('aria-expanded', 'false');
-    });
-    document.querySelectorAll('button[data-key]:not(.main-category)').forEach(btn => {
-        btn.addEventListener('click', function () {
-            showDescription(btn);
+        document.querySelectorAll('.dropdown-content').forEach(div => {
+            div.style.display = 'none';
         });
-    });
-    document.querySelectorAll('.criteria-checkbox').forEach(checkbox => {
-        checkbox.addEventListener('change', function () {
-            const id = checkbox.getAttribute('data-criteria');
-            if (checkbox.checked) {
-                selectedCriteria.add(id);
-            } else {
-                selectedCriteria.delete(id);
+        document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+            btn.setAttribute('aria-expanded', 'false');
+        });
+        document.querySelectorAll('button[data-key]:not(.main-category)').forEach(btn => {
+            btn.addEventListener('click', function () {
+                showDescription(btn);
+            });
+        });
+        document.querySelectorAll('.criteria-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                const id = checkbox.getAttribute('data-criteria');
+                if (checkbox.checked) {
+                    selectedCriteria.add(id);
+                } else {
+                    selectedCriteria.delete(id);
+                }
+                updateRankingPanel();
+            });
+        });
+        updateRankingPanel();
+
+        // Communities list and tab logic
+        let commList = document.getElementById('communities-list');
+        if (commList) commList.remove();
+        commList = document.createElement('div');
+        commList.id = 'communities-list';
+        const contentCommunities = document.getElementById('tab-content-communities');
+        contentCommunities.appendChild(commList);
+
+        // Tab switching logic - updated for new HTML structure
+        const tabCategories = document.getElementById('tab-categories');
+        const tabCommunities = document.getElementById('tab-communities');
+        const tabSubmit = document.getElementById('tab-submit');
+        const tabAbout = document.getElementById('tab-about');
+        const contentCategories = document.getElementById('tab-content-categories');
+        const contentSubmit = document.getElementById('tab-content-submit');
+        const contentAbout = document.getElementById('tab-content-about');
+
+        function showTab(tab) {
+            // Update navigation buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+            
+            // Update app container class for layout changes
+            const appContainer = document.getElementById('app-container');
+            appContainer.classList.remove('communities-active', 'submit-active', 'about-active');
+            
+            // Show selected tab
+            switch(tab) {
+                case 'categories':
+                    tabCategories.classList.add('active');
+                    contentCategories.classList.add('active');
+                    contentCategories.style.display = 'block';
+                    break;
+                case 'communities':
+                    tabCommunities.classList.add('active');
+                    contentCommunities.classList.add('active');
+                    contentCommunities.style.display = 'block';
+                    appContainer.classList.add('communities-active');
+                    // Pre-render communities to avoid animation issues
+                    currentCommunityPage = 1;
+                    renderCommunitiesPage(currentCommunityPage);
+                    break;
+                case 'submit':
+                    tabSubmit.classList.add('active');
+                    contentSubmit.classList.add('active');
+                    contentSubmit.style.display = 'block';
+                    appContainer.classList.add('submit-active');
+                    break;
+                case 'about':
+                    tabAbout.classList.add('active');
+                    contentAbout.classList.add('active');
+                    contentAbout.style.display = 'block';
+                    appContainer.classList.add('about-active');
+                    break;
             }
-            updateRankingPanel();
+            
+            // Hide other tabs
+            document.querySelectorAll('.tab-panel:not(.active)').forEach(panel => {
+                panel.style.display = 'none';
+            });
+            
+            // Show/hide sidebar based on tab
+            const sidebar = document.getElementById('sidebar');
+            if (tab === 'categories') {
+                sidebar.style.display = 'flex';
+            } else {
+                sidebar.style.display = 'none';
+            }
+
+            // Always scroll to top of main content on tab switch
+            const mainContent = document.getElementById('main-content');
+            if (mainContent) {
+                mainContent.scrollTop = 0;
+            }
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+
+        tabCategories.addEventListener('click', () => showTab('categories'));
+        tabCommunities.addEventListener('click', () => showTab('communities'));
+        tabSubmit.addEventListener('click', () => showTab('submit'));
+        tabAbout.addEventListener('click', () => showTab('about'));
+
+        // Initialize with categories tab active
+        showTab('categories');
+
+        // RP categories visibility - moved after HTML is loaded
+        const rpFocused = document.getElementById('cb-rp-focused');
+        if (rpFocused) rpFocused.addEventListener('change', updateRPCategoriesVisibility);
+        updateRPCategoriesVisibility();
+
+        // Play Style unlock logic - moved after HTML is loaded
+        document.querySelectorAll('#play-style-main .criteria-checkbox').forEach(cb => {
+            cb.addEventListener('change', updateCategoryVisibilityBySelection);
         });
+        updateCategoryVisibilityBySelection();
     });
-    updateRankingPanel();
-
-    // Ranking panel toggle
-    const rankingPanel = document.getElementById('ranking-panel');
-    const rankingBtn = document.getElementById('ranking-toggle-btn');
-    let rankingVisible = true;
-
-    function updateRankingBtn() {
-        if (rankingVisible) {
-            rankingBtn.textContent = "Hide Matches";
-            rankingBtn.classList.add('active');
-        } else {
-            rankingBtn.textContent = "Show Matches";
-            rankingBtn.classList.remove('active');
-        }
-        rankingBtn.setAttribute('aria-expanded', rankingVisible ? 'true' : 'false');
-    }
-
-    rankingBtn.addEventListener('click', () => {
-        rankingVisible = !rankingVisible;
-        rankingPanel.classList.toggle('hide', !rankingVisible);
-        updateRankingBtn();
-    });
-
-    rankingPanel.classList.remove('hide');
-    updateRankingBtn();
-
-    // Communities list and tab logic
-    let commList = document.getElementById('communities-list');
-    if (commList) commList.remove();
-    commList = document.createElement('div');
-    commList.id = 'communities-list';
-    const contentCommunities = document.getElementById('tab-content-communities');
-    contentCommunities.appendChild(commList);
-
-    // Tab switching logic
-    const tabCategories = document.getElementById('tab-categories');
-    const tabCommunities = document.getElementById('tab-communities');
-    const tabSubmit = document.getElementById('tab-submit');
-    const tabAbout = document.getElementById('tab-about');
-    const contentCategories = document.getElementById('tab-content-categories');
-    const contentSubmit = document.getElementById('tab-content-submit');
-    const contentAbout = document.getElementById('tab-content-about');
-    const descriptionPanel = document.getElementById('description-panel');
-
-    function showTab(tab) {
-        tabCategories.classList.toggle('active', tab === 'categories');
-        tabCommunities.classList.toggle('active', tab === 'communities');
-        tabSubmit.classList.toggle('active', tab === 'submit');
-        tabAbout.classList.toggle('active', tab === 'about');
-        contentCategories.style.display = tab === 'categories' ? '' : 'none';
-        contentCommunities.style.display = tab === 'communities' ? '' : 'none';
-        contentSubmit.style.display = tab === 'submit' ? '' : 'none';
-        contentAbout.style.display = tab === 'about' ? '' : 'none';
-        if (rankingBtn) rankingBtn.style.display = tab === 'categories' ? '' : 'none';
-        if (rankingPanel) rankingPanel.style.display = tab === 'categories' ? '' : 'none';
-        if (descriptionPanel) descriptionPanel.style.display = tab === 'categories' ? '' : 'none';
-        document.body.classList.toggle('communities-expanded', tab === 'communities');
-        if (tab === 'communities') {
-            currentCommunityPage = 1;
-            renderCommunitiesPage(currentCommunityPage);
-        }
-    }
-
-    tabCategories.addEventListener('click', () => showTab('categories'));
-    tabCommunities.addEventListener('click', () => showTab('communities'));
-    tabSubmit.addEventListener('click', () => showTab('submit'));
-    tabAbout.addEventListener('click', () => showTab('about'));
-
-    // RP categories visibility
-    const rpFocused = document.getElementById('cb-rp-focused');
-    if (rpFocused) rpFocused.addEventListener('change', updateRPCategoriesVisibility);
-    updateRPCategoriesVisibility();
-
-    // Play Style unlock logic
-    document.querySelectorAll('#play-style-main .criteria-checkbox').forEach(cb => {
-        cb.addEventListener('change', updateCategoryVisibilityBySelection);
-    });
-    updateCategoryVisibilityBySelection();
 });
 
 let selectedCriteria = new Set();
@@ -334,15 +383,65 @@ function updateRankingPanel() {
         }
         icon.style.display = '';
     }
+    
+    // Create mapping from criteria IDs to community category names
+    const criteriaToCategory = {
+        "rp-focused": "RP-Focused",
+        "competitive-multiplayer": "Competitive Multiplayer",
+        "casual-multiplayer": "Casual Multiplayer",
+        "railroad": "Railroad",
+        "freeform": "Freeform", 
+        "sandbox": "Sandbox",
+        "narrative-driven": "Narrative-Driven",
+        "simulationist": "Simulationist",
+        "tactical": "Tactical",
+        "voice-rp": "Voice RP",
+        "text-based-rp": "Text-Based RP",
+        "mixed-rp": "Mixed RP",
+        "high-lore": "High Lore Demand",
+        "moderate-lore": "Moderate Lore Demand",
+        "low-lore": "Low Lore Demand",
+        "large-communities": "Large Communities",
+        "medium-communities": "Medium Communities",
+        "small-communities": "Small Communities",
+        "exclusive-communities": "Exclusive Communities",
+        "beginner-friendly": "Beginner-Friendly",
+        "intermediate": "Intermediate",
+        "advanced-expert": "Advanced/Expert",
+        "mixed-skill": "Mixed Skill Level",
+        "vanilla": "Vanilla",
+        "lightly-modded": "Lightly Modded",
+        "heavily-modded": "Heavily Modded",
+        "english-speaking": "English-Speaking",
+        "non-english-speaking": "Non-English Speaking",
+        "multilingual": "Multilingual",
+        "regional-groups": "Regional Groups",
+        "global-groups": "Global Groups",
+        "single-campaign": "Single Campaign",
+        "multiple-campaigns": "Multiple Campaigns",
+        "strict-moderation": "Strict Moderation",
+        "relaxed-moderation": "Relaxed Moderation",
+        "community-guided": "Community-Guided",
+        "multiple-a-week": "Multiple a Week",
+        "weekly": "Weekly",
+        "bi-monthly": "Bi-Monthly",
+        "monthly": "Monthly",
+        "other-session-frequency": "Other"
+    };
+
     let results = '';
     if (selectedCriteria.size > 0) {
+        // Convert selected criteria IDs to category names for matching
+        const selectedCategories = Array.from(selectedCriteria).map(id => criteriaToCategory[id]).filter(Boolean);
+        
         let ranked = allCommunities.map(comm => {
-            let score = comm.criteria.filter(c => selectedCriteria.has(c)).length;
-            return { name: comm.name, score, total: comm.criteria.length };
+            let score = comm.categories.filter(c => selectedCategories.includes(c)).length;
+            return { name: comm.name, score, total: comm.categories.length };
         });
         ranked.sort((a, b) => b.score - a.score);
         results = '<strong>Best Matches:</strong><ul>';
-        ranked.forEach(r => {
+        // Show only top 3 matches
+        ranked.slice(0, 3).forEach(r => {
             results += `<li>${r.name}: <b>${r.score}</b> / ${r.total} match${r.score === 1 ? '' : 'es'}</li>`;
         });
         results += '</ul>';
@@ -410,8 +509,13 @@ function updateRPCategoriesVisibility() {
 }
 
 document.addEventListener('click', function (e) {
-    const isInside = e.target.closest('.main-category, .dropdown-content, .subcategory-btn, button[data-key], #ranking-toggle-btn, #ranking-panel');
-    if (!isInside) {
+    // Only collapse if clicking in the main content area AND not on interactive elements
+    const isInMainContent = e.target.closest('#main-content');
+    const isInSidebar = e.target.closest('#sidebar');
+    const isInteractiveElement = e.target.closest('.main-category, .dropdown-content, .subcategory-btn, button[data-key], input, label, .nav-btn');
+    
+    // Only collapse if we're in main content and not clicking an interactive element
+    if (isInMainContent && !isInSidebar && !isInteractiveElement) {
         document.querySelectorAll('.main-category').forEach(btn => btn.setAttribute('aria-expanded', 'false'));
         document.querySelectorAll('.category > .dropdown-content').forEach(div => div.style.display = 'none');
         const panel = document.getElementById('description-panel');
@@ -427,7 +531,12 @@ let currentCommunityPage = 1;
 function renderCommunitiesPage(page = 1) {
     const commList = document.getElementById('communities-list');
     if (!commList) return;
-    commList.innerHTML = '';
+    
+    // Only clear on first page, append on subsequent pages
+    if (page === 1) {
+        commList.innerHTML = '';
+    }
+    
     const start = (page - 1) * COMMUNITIES_PER_PAGE;
     const end = start + COMMUNITIES_PER_PAGE;
     const pageCommunities = allCommunities.slice(start, end);
@@ -435,6 +544,7 @@ function renderCommunitiesPage(page = 1) {
     pageCommunities.forEach(comm => {
         const card = document.createElement('div');
         card.className = 'community-card';
+        
         // Banner
         const banner = document.createElement('img');
         banner.src = comm.banner || 'https://via.placeholder.com/140x70?text=No+Banner';
@@ -512,6 +622,7 @@ function renderCommunitiesPage(page = 1) {
         frag.appendChild(card);
     });
     commList.appendChild(frag);
+    
     // Pagination controls
     let pagination = document.getElementById('communities-pagination');
     if (pagination) pagination.remove();
@@ -557,3 +668,28 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     updateCategoryVisibilityBySelection();
 });
+
+function updateCategoryVisibilityBySelection() {
+    const tabContent = document.getElementById('tab-content-categories');
+    const main = document.querySelector('main');
+    const playStyleCheckboxes = document.querySelectorAll('#play-style-main .criteria-checkbox');
+    const anyChecked = Array.from(playStyleCheckboxes).some(cb => cb.checked);
+    tabContent.classList.toggle('categories-unlocked', anyChecked);
+    if (main) main.classList.toggle('only-play-style', !anyChecked);
+}
+
+// --- SUBMIT FORM ---
+function submitCommunityForm() {
+    const msg = document.getElementById('submit-community-message');
+    msg.textContent = "Thank you for your submission! Your community will be reviewed.";
+    msg.style.color = "#6be672";
+    setTimeout(function() {
+        document.getElementById('submit-community-form').reset();
+        updateSubmitRPCategoriesVisibility();
+    }, 1000);
+    return true;
+}
+
+
+
+

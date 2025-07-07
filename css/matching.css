@@ -1,0 +1,156 @@
+.category {
+    margin-bottom: var(--spacing-xl);
+    max-width: 100%;
+}
+
+.category.rp-disabled {
+    opacity: 0.5;
+    pointer-events: auto;
+    filter: grayscale(0.7);
+    position: relative;
+    transition: opacity 0.2s, filter 0.2s;
+}
+
+.category-disabled-message {
+    display: inline-block;
+    background: var(--color-accent-primary);
+    color: var(--color-bg-tertiary);
+    border: 2px solid var(--color-accent-primary);
+    border-radius: var(--border-radius-md);
+    padding: 0.3em 0.8em;
+    margin-left: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    font-size: 0.9em;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: var(--box-shadow-sm);
+    letter-spacing: 0.2px;
+    opacity: 1 !important;
+    filter: none !important;
+}
+
+/* Category Visibility Animation */
+.category:not(:first-of-type) {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s ease, max-height 0.5s ease;
+}
+
+#tab-content-categories.categories-unlocked .category:not(:first-of-type) {
+    opacity: 1;
+    max-height: 2000px;
+    pointer-events: auto;
+    transition: opacity 0.5s ease, max-height 0.7s ease;
+}
+
+.category:first-of-type {
+    opacity: 1;
+    max-height: 2000px;
+    transition: opacity 0.5s ease, max-height 0.7s ease;
+}
+
+/* Category Options */
+.category-option {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.category-option .criteria-checkbox {
+    accent-color: var(--color-success);
+    width: 1.3em;
+    height: 1.3em;
+    margin: 0;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.category-option .subcategory-btn {
+    flex: 1;
+    margin: 0;
+    max-width: none;
+}
+
+.dropdown-content {
+    margin-left: var(--spacing-xl);
+    padding-left: var(--spacing-md);
+    border-left: 2px solid #444;
+    background: none;
+    margin-top: var(--spacing-sm);
+}
+
+/* Main Category Buttons */
+.main-category {
+    font-size: 1.3rem;
+    font-weight: bold;
+    margin-bottom: 0.2em;
+    margin-top: 0.2em;
+    background: linear-gradient(90deg, var(--color-bg-tertiary) 80%, #4fa3ff33 100%);
+    border-left: 8px solid var(--color-success);
+    border-radius: 0 var(--border-radius-lg) var(--border-radius-lg) 0;
+    color: #fff;
+    box-shadow: var(--box-shadow-md);
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    border-right: 2px solid #444;
+    border-top: 2px solid #444;
+    border-bottom: 2px solid #444;
+    /* Remove extra vertical spacing */
+}
+
+.main-category:first-child {
+    margin-top: 0;
+}
+
+.main-category:last-child {
+    margin-bottom: 0;
+}
+
+/* Active States */
+.dropdown-toggle.active-sub,
+.subcategory-btn.active-sub {
+    background: var(--color-bg-tertiary);
+    color: #fff;
+    border-color: var(--color-success);
+    box-shadow: 0 0 0 2px rgba(107, 230, 114, 0.3);
+}
+
+.subcategory-btn.active-desc:not(.active-sub) {
+    border-color: var(--color-accent-primary);
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3), var(--box-shadow-md);
+    background: linear-gradient(90deg, #27313a 80%, #6be67233 100%);
+    color: var(--color-accent-secondary);
+}
+
+.subcategory-btn.active-desc.active-sub {
+    border-color: var(--color-success);
+    box-shadow: 
+        0 0 0 2px rgba(255, 215, 0, 0.3),
+        0 0 0 4px rgba(107, 230, 114, 0.3),
+        var(--box-shadow-md);
+    background: linear-gradient(90deg, #27313a 80%, #6be67233 100%);
+    color: var(--color-accent-secondary);
+}
+
+.dropdown-toggle.dropdown-open {
+    background: linear-gradient(90deg, #27313a 80%, #6be67233 100%);
+    color: var(--color-accent-secondary);
+    border-color: var(--color-info);
+    box-shadow: var(--box-shadow-md);
+}
+
+/* Multi-selection note */
+.multi-note {
+    color: var(--color-success);
+    font-size: 0.95em;
+    margin-bottom: var(--spacing-md);
+    font-style: italic;
+    font-weight: bold;
+    padding: var(--spacing-sm);
+    background: rgba(107, 230, 114, 0.1);
+    border-radius: var(--border-radius-sm);
+    border-left: 3px solid var(--color-success);
+}

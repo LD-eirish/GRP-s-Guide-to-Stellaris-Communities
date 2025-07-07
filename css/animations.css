@@ -1,0 +1,52 @@
+@keyframes gold-emit {
+    0% {
+        box-shadow:
+            0 0 0 0 #ffd70088,
+            0 0 0 0 #ffd70044,
+            0 0 0 0 #ffd70022;
+    }
+    60% {
+        box-shadow:
+            0 0 0 4px #ffd70088,
+            0 0 8px 4px #ffd70044,
+            0 0 16px 10px #ffd70022;
+    }
+    100% {
+        box-shadow:
+            0 0 0 0 #ffd70088,
+            0 0 6px 2px #ffd70044,
+            0 0 16px 6px #ffd70022;
+    }
+}
+
+@keyframes info-pop {
+    0% { 
+        transform: scale(0.7); 
+        opacity: 0; 
+    }
+    60% { 
+        transform: scale(1.2); 
+        opacity: 1; 
+    }
+    100% { 
+        transform: scale(1); 
+        opacity: 1; 
+    }
+}
+
+.subcategory-btn.active-desc .info-icon {
+    animation: info-pop 0.5s cubic-bezier(.4,0,.2,1);
+}
+
+/* Transition utilities */
+.transition-fast {
+    transition: all 0.15s ease-in-out;
+}
+
+.transition-normal {
+    transition: all 0.3s ease-in-out;
+}
+
+.transition-slow {
+    transition: all 0.5s ease-in-out;
+}
