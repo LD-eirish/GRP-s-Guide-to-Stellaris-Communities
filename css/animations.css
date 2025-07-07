@@ -38,7 +38,7 @@
     animation: info-pop 0.5s cubic-bezier(.4,0,.2,1);
 }
 
-/* Transition utilities */
+/* Transition utilities X */
 .transition-fast {
     transition: all 0.15s ease-in-out;
 }
