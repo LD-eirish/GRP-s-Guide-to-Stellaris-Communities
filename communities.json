@@ -17,8 +17,8 @@
         "discord": "https://discord.gg/example2",
         "categories": [
             "Competitive Multiplayer", "Medium Communities", "Advanced/Expert", "Lightly Modded", "English-Speaking",
-            "Regional Groups", "Tactical", "Voice RP", "Single Campaign",
-            "High Activity", "High Lore Demand", "Strict Moderation", "Multiple a Week"
+            "Regional Groups", "Tactical", "Single Campaign",
+            "High Activity", "Strict Moderation", "Multiple a Week"
         ]
     },
     {
@@ -28,8 +28,8 @@
         "discord": "https://discord.gg/example3",
         "categories": [
             "Casual Multiplayer", "Small Communities", "Mixed Skill Level", "Heavily Modded", "Non-English Speaking",
-            "Global Groups", "Sandbox", "Mixed RP", "Multiple Campaigns",
-            "Low Activity", "Low Lore Demand", "Community-Guided", "Bi-Monthly"
+            "Global Groups", "Sandbox", "Multiple Campaigns",
+            "Low Activity", "Community-Guided", "Bi-Monthly"
         ]
     },
     {
@@ -50,8 +50,8 @@
         "discord": "https://discord.gg/example5",
         "categories": [
             "Competitive Multiplayer", "Large Communities", "Advanced/Expert", "Vanilla", "English-Speaking",
-            "Global Groups", "Tactical", "Voice RP", "Multiple Campaigns",
-            "High Activity", "Low Lore Demand", "Strict Moderation", "Multiple a Week"
+            "Global Groups", "Tactical", "Multiple Campaigns",
+            "High Activity", "Strict Moderation", "Multiple a Week"
         ]
     },
     {
@@ -61,8 +61,8 @@
         "discord": "https://discord.gg/example6",
         "categories": [
             "Casual Multiplayer", "Medium Communities", "Mixed Skill Level", "Vanilla", "Multilingual",
-            "Global Groups", "Sandbox", "Mixed RP", "Multiple Campaigns",
-            "Low Activity", "Low Lore Demand", "Community-Guided", "Monthly"
+            "Global Groups", "Sandbox", "Multiple Campaigns",
+            "Low Activity", "Community-Guided", "Monthly"
         ]
     },
     {
@@ -83,8 +83,8 @@
         "discord": "https://discord.gg/example8",
         "categories": [
             "Casual Multiplayer", "Large Communities", "Beginner-Friendly", "Vanilla", "English-Speaking",
-            "Global Groups", "Freeform", "Voice RP", "Multiple Campaigns",
-            "Moderate Activity", "Low Lore Demand", "Relaxed Moderation", "Weekly"
+            "Global Groups", "Freeform", "Multiple Campaigns",
+            "Moderate Activity", "Relaxed Moderation", "Weekly"
         ]
     },
     {
@@ -105,8 +105,8 @@
         "discord": "https://discord.gg/example10",
         "categories": [
             "Casual Multiplayer", "Medium Communities", "Mixed Skill Level", "Heavily Modded", "Multilingual",
-            "Regional Groups", "Sandbox", "Voice RP", "Multiple Campaigns",
-            "Moderate Activity", "Moderate Lore Demand", "Community-Guided", "Weekly"
+            "Regional Groups", "Sandbox", "Multiple Campaigns",
+            "Moderate Activity", "Community-Guided", "Weekly"
         ]
     },
     {
@@ -116,8 +116,8 @@
         "discord": "https://discord.gg/example11",
         "categories": [
             "Competitive Multiplayer", "Small Communities", "Advanced/Expert", "Vanilla", "English-Speaking",
-            "Global Groups", "Tactical", "Voice RP", "Single Campaign",
-            "High Activity", "Low Lore Demand", "Strict Moderation", "Multiple a Week"
+            "Global Groups", "Tactical", "Single Campaign",
+            "High Activity", "Strict Moderation", "Multiple a Week"
         ]
     },
     {
@@ -127,8 +127,8 @@
         "discord": "https://discord.gg/example12",
         "categories": [
             "Casual Multiplayer", "Large Communities", "Intermediate", "Heavily Modded", "English-Speaking",
-            "Global Groups", "Freeform", "Mixed RP", "Multiple Campaigns",
-            "Moderate Activity", "Moderate Lore Demand", "Relaxed Moderation", "Weekly"
+            "Global Groups", "Freeform", "Multiple Campaigns",
+            "Moderate Activity", "Relaxed Moderation", "Weekly"
         ]
     },
     {
@@ -149,8 +149,8 @@
         "discord": "https://discord.gg/example14",
         "categories": [
             "Casual Multiplayer", "Medium Communities", "Mixed Skill Level", "Vanilla", "English-Speaking",
-            "Global Groups", "Sandbox", "Voice RP", "Multiple Campaigns",
-            "Low Activity", "Low Lore Demand", "Community-Guided", "Bi-Monthly"
+            "Global Groups", "Sandbox", "Multiple Campaigns",
+            "Low Activity", "Community-Guided", "Bi-Monthly"
         ]
     },
     {
