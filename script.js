@@ -63,8 +63,7 @@ let categoryHeadings = {};
 function loadDescriptions() {
     fetch('descriptions.json')
         .then(res => res.json())
-        .then(data => { descriptions = data; })
-        .catch(error => console.error('Error loading descriptions:', error));
+        .then(data => { descriptions = data; });
 }
 
 function loadCommunities() {
