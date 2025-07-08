@@ -573,18 +573,12 @@ function renderCommunitiesPage(page = 1) {
             info.insertBefore(playStyleDiv, info.firstChild.nextSibling);
         }
         // Other tags
-        const rpTags = [
-            "Railroad", "Freeform", "Sandbox", "Narrative-Driven", "Simulationist", "Tactical",
-            "Voice RP", "Text-Based RP", "Mixed",
-            "High Lore Demand", "Moderate Lore Demand", "Low Lore Demand"
-        ];
         const categoryGroups = [
             { label: "Size", cats: ["Large Communities", "Medium Communities", "Small Communities", "Exclusive Communities"] },
             { label: "Experience", cats: ["Beginner-Friendly", "Intermediate", "Advanced/Expert", "Mixed Skill Level"] },
             { label: "Mods", cats: ["Vanilla", "Lightly Modded", "Heavily Modded"] },
             { label: "Language", cats: ["English-Speaking", "Non-English Speaking", "Multilingual"] },
             { label: "Region", cats: ["Regional Groups", "Global Groups"] },
-            // RP-related tags will be conditionally included below
             { label: "RP Style", cats: ["Railroad", "Freeform", "Sandbox", "Narrative-Driven", "Simulationist", "Tactical"] },
             { label: "Session Type", cats: ["Voice RP", "Text-Based RP", "Mixed"] },
             { label: "Campaigns", cats: ["Single Campaign", "Multiple Campaigns"] },
@@ -593,16 +587,7 @@ function renderCommunitiesPage(page = 1) {
             { label: "Lore", cats: ["High Lore Demand", "Moderate Lore Demand", "Low Lore Demand"] }
         ];
         let allTags = [];
-        // Only include RP-related tags if RP-Focused is present
-        const isRPFocussed = comm.categories.includes("RP-Focused");
         categoryGroups.forEach(group => {
-            // If group is RP-related and not RP-Focused, skip
-            if (
-                ["RP Style", "Session Type", "Lore"].includes(group.label) &&
-                !isRPFocussed
-            ) {
-                return;
-            }
             const found = comm.categories.filter(cat => group.cats.includes(cat));
             allTags = allTags.concat(found);
         });
