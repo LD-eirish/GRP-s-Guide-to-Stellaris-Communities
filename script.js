@@ -60,12 +60,6 @@ let descriptions = {};
 let allCommunities = [];
 let categoryHeadings = {};
 
-function loadDescriptions() {
-    fetch('descriptions.json')
-        .then(res => res.json())
-        .then(data => { descriptions = data; });
-}
-
 function loadCommunities() {
     fetch('communities.json')
         .then(response => {
@@ -116,6 +110,7 @@ function showDescription(button) {
         showDefaultDescription();
         return;
     }
+    // Only load fallbackDescriptions.json
     fetch('fallbackDescriptions.json')
         .then(response => {
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
@@ -358,7 +353,7 @@ async function loadHTMLContent() {
     try {
         const [categoriesHTML, communitiesHTML, submitHTML, aboutHTML] = await Promise.all([
             fetch('html/categories.html').then(res => res.text()),
-            fetch('html/communities.html').then(res => res.text()),
+            fetch('html/communities.html').then( res => res.text()),
             fetch('html/submit.html').then(res => res.text()),
             fetch('html/about.html').then(res => res.text())
         ]);
@@ -383,7 +378,7 @@ function initializeFormHandlers() {
 // --- Event Setup ---
 document.addEventListener('DOMContentLoaded', () => {
     loadHTMLContent().then(() => {
-        loadDescriptions();
+        // Removed: loadDescriptions();
         loadCommunities();
         loadCategoryHeadings();
         qsa('.dropdown-content').forEach(div => { div.style.display = 'none'; });
@@ -682,7 +677,7 @@ function submitCommunityForm() {
     setTimeout(function() {
         document.getElementById('submit-community-form').reset();
         updateSubmitRPCategoriesVisibility();
-    }, 1000);
+    }, 10);
     return true;
 }
 
