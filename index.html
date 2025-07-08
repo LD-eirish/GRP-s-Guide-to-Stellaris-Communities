@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stellaris Community Guide</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="css/media.css" />
   </head>
   <body>
     <div id="app-container">
       <header id="main-header">
         <div class="header-content">
-          <h1>Stellaris Community Guide</h1>
+          <h1 style="position:relative;">
+            Stellaris Community Guide
+            <span class="preview-badge">PREVIEW</span>
+          </h1>
           <nav id="main-navigation">
             <button id="tab-categories" class="nav-btn active" type="button">
               Matching
@@ -27,7 +31,6 @@
           </nav>
         </div>
       </header>
-
       <main id="main-content">
         <div class="content-wrapper">
           <section id="tab-content-categories" class="tab-panel active"></section>
@@ -36,7 +39,6 @@
           <section id="tab-content-about" class="tab-panel"></section>
         </div>
       </main>
-
       <aside id="sidebar">
         <div id="sidebar-content">
           <div id="description-panel" class="sidebar-panel"></div>
@@ -53,14 +55,16 @@
           </div>
         </div>
       </aside>
-
       <footer id="main-footer">
         <div class="footer-content">
           <p>2025 GRP Community</p>
+          <p class="wip-disclaimer">
+            W.I.P. This page is under development and does not represent the final
+            product.
+          </p>
         </div>
       </footer>
     </div>
-
     <script src="script.js"></script>
     <script src="js/form-handlers.js"></script>
     <script src="js/submit-form.js"></script>

@@ -2,13 +2,35 @@
     --color-bg-primary: #181c1f;
     --color-bg-secondary: #22262a;
     --color-bg-tertiary: #23272b;
+    --color-bg-highlight: #1a1e23;
     --color-text-primary: #f0f0f0;
     --color-text-secondary: #e0e0e0;
     --color-accent-primary: #ffd700;
     --color-accent-secondary: #ffd580;
+    --color-accent-tertiary: #ffe066;
+    --color-accent-danger: #e53935;
     --color-success: #6be672;
     --color-info: #4fa3ff;
+    --color-info-dark: #205080;
+    --color-info-bg: #2a2342;
     --color-border: #ffd70044;
+    --color-border-strong: #ffd700;
+    --color-border-secondary: #ffd580;
+    --color-border-dark: #444;
+    --color-card-bg: #22304a;
+    --color-card-border: #22304a;
+    --color-disabled-bg: #ffe7b3;
+    --color-disabled-text: #23272b;
+    --color-shadow-gold: #ffd70088;
+    --color-shadow-gold-light: #ffd70044;
+    --color-shadow-gold-lighter: #ffd70022;
+    --color-shadow-blue: #20508088;
+    --color-shadow-blue-light: #4fa3ff33;
+    --color-shadow-black: #0002;
+    --color-shadow-black-strong: #0003;
+    --color-shadow-black-stronger: #0004;
+    --color-shadow-black-strongest: #0008;
+
     --spacing-xs: 0.2em;
     --spacing-sm: 0.5em;
     --spacing-md: 1em;
@@ -18,9 +40,9 @@
     --border-radius-md: 8px;
     --border-radius-lg: 12px;
     --border-radius-xl: 18px;
-    --box-shadow-sm: 0 2px 8px #0003;
-    --box-shadow-md: 0 2px 12px #0004;
-    --box-shadow-lg: 0 4px 24px #0008;
+    --box-shadow-sm: 0 2px 8px var(--color-shadow-black-strong);
+    --box-shadow-md: 0 2px 12px var(--color-shadow-black-stronger);
+    --box-shadow-lg: 0 4px 24px var(--color-shadow-black-strongest);
 }
 
 * {
@@ -38,19 +60,17 @@ body {
 html, body {
     width: 100vw;
     max-width: 100vw;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
 }
 
 h1 {
     margin: 0;
-    font-size: 2rem;
 }
 
 h2 {
     color: var(--color-accent-primary);
-    font-size: 1.45em;
     font-weight: bold;
     margin-bottom: 1.1em;
     letter-spacing: 0.5px;
-    text-shadow: 0 2px 8px #0008;
+    text-shadow: 0 2px 8px var(--color-shadow-black-strongest);
 }

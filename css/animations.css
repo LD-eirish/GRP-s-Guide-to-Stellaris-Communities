@@ -1,21 +1,21 @@
 @keyframes gold-emit {
     0% {
         box-shadow:
-            0 0 0 0 #ffd70088,
-            0 0 0 0 #ffd70044,
-            0 0 0 0 #ffd70022;
+            0 0 0 0 var(--color-shadow-gold),
+            0 0 0 0 var(--color-shadow-gold-light),
+            0 0 0 0 var(--color-shadow-gold-lighter);
     }
     60% {
         box-shadow:
-            0 0 0 4px #ffd70088,
-            0 0 8px 4px #ffd70044,
-            0 0 16px 10px #ffd70022;
+            0 0 0 4px var(--color-shadow-gold),
+            0 0 8px 4px var(--color-shadow-gold-light),
+            0 0 16px 10px var(--color-shadow-gold-lighter);
     }
     100% {
         box-shadow:
-            0 0 0 0 #ffd70088,
-            0 0 6px 2px #ffd70044,
-            0 0 16px 6px #ffd70022;
+            0 0 0 0 var(--color-shadow-gold),
+            0 0 6px 2px var(--color-shadow-gold-light),
+            0 0 16px 6px var(--color-shadow-gold-lighter);
     }
 }
 

@@ -1,0 +1,95 @@
+
+/* --- Aspect Ratio Handling --- */
+
+/* Ultra-wide screens (21:9, 32:9, etc.) */
+@media (min-aspect-ratio: 21/9) {
+    html {
+        font-size: 1.08em;
+    }
+}
+
+/* Standard widescreen (16:9, 16:10) */
+@media (min-aspect-ratio: 16/10) and (max-aspect-ratio: 21/9) {
+    html {
+        font-size: 1em;
+    }
+}
+
+/* 4:3 and squarer screens */
+@media (max-aspect-ratio: 4/3) {
+    html {
+        font-size: 0.95em;
+    }
+}
+
+/* Portrait screens (mobile, tablets) */
+@media (max-aspect-ratio: 3/4) {
+    html {
+        font-size: 0.93em;
+    }
+}
+
+
+/* --- Inverted Zoom Level Handling --- */
+
+/* Extra high zoom (DPR >= 2.5) */
+@media (min-resolution: 2.5dppx) {
+    html {
+        font-size: 0.88em;
+    }
+    body {
+        letter-spacing: 0.012em;
+    }
+}
+
+/* High zoom (DPR >= 1.5 and < 2.5) */
+@media (min-resolution: 1.5dppx) and (max-resolution: 2.49dppx) {
+    html {
+        font-size: 0.94em;
+    }
+    body {
+        letter-spacing: 0.01em;
+    }
+}
+
+/* Slightly above normal zoom (DPR >= 1.15 and < 1.5) */
+@media (min-resolution: 1.15dppx) and (max-resolution: 1.49dppx) {
+    html {
+        font-size: 0.98em;
+    }
+}
+
+/* Normal (DPR ~1): default font size */
+@media (min-resolution: 0.99dppx) and (max-resolution: 1.14dppx) {
+    html {
+        font-size: 1em;
+    }
+}
+
+/* Low zoom (DPR < 1) */
+@media (max-resolution: 0.98dppx) {
+    html {
+        font-size: 1.08em;
+    }
+}
+
+/* Touch device zoom handling (mobile/tablet pinch zoom): treat as high zoom, so smaller text */
+@media (hover: none) and (pointer: coarse) {
+    html {
+        font-size: 0.94em;
+    }
+}
+
+
+/* --- General Responsive Tweaks for Extreme Ratios --- */
+@media (max-width: 600px), (max-height: 500px) {
+    html {
+        font-size: 0.88em;
+    }
+}
+
+
+/* Prevent overflow on ultra-wide or zoomed-in screens */
+html, body {
+    overflow-x: hidden !important;
+}

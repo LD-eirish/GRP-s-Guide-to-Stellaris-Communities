@@ -2,41 +2,44 @@
     width: 100vw;
     max-width: none;
     background: linear-gradient(120deg, var(--color-bg-tertiary) 80%, var(--color-bg-tertiary) 100%);
-    box-shadow: var(--box-shadow-lg), 0 2px 8px #ffd70022;
+    box-shadow: var(--box-shadow-lg), 0 2px 8px var(--color-shadow-gold-lighter);
     padding: var(--spacing-lg);
     margin: 0 10px;
-    border: 2.5px solid #ffd70033;
+    border: 2.5px solid var(--color-border);
     transition: box-shadow 0.25s, border 0.25s, background 0.25s;
     position: relative;
     z-index: 1;
     left: 48.1%;
     transform: translateX(-50%);
     min-height: calc(100vh - 200px);
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     box-sizing: border-box;
 }
 
 #communities-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-lg);
+    gap: var(--spacing-xl) var(--spacing-lg);
+    row-gap: 4em;
     margin-top: var(--spacing-lg);
     width: 100%;
     padding: 0;
+    overflow-x: hidden;
+    padding-bottom: 120px;
 }
 
-/* Community Cards - keep existing styles but ensure proper layout */
+/* Community Cards */
 .community-card {
     display: flex;
     flex-direction: column;
     background: linear-gradient(120deg, var(--color-bg-tertiary) 80%, var(--color-bg-tertiary) 100%);
     border-radius: var(--border-radius-lg);
-    box-shadow: var(--box-shadow-lg), 0 2px 8px #ffd70022;
+    box-shadow: var(--box-shadow-lg), 0 2px 8px var(--color-shadow-gold-lighter);
     padding: var(--spacing-lg);
     gap: var(--spacing-md);
     position: relative;
     transition: box-shadow 0.18s ease, border-color 0.18s ease;
-    border: 2.5px solid #ffd70022;
+    border: 2.5px solid var(--color-border);
     overflow: hidden;
     height: fit-content;
 }
@@ -48,18 +51,18 @@
     left: -2px;
     right: -2px;
     bottom: -2px;
-    border: 2px solid #ffd700;
+    border: 2px solid var(--color-border-strong);
     border-radius: inherit;
     opacity: 0;
     transition: opacity 0.2s ease;
     pointer-events: none;
     z-index: -1;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+    box-shadow: 0 0 15px var(--color-shadow-gold);
 }
 
 .community-card:hover {
-    box-shadow: 0 8px 32px #ffd70044, 0 4px 16px #000a;
-    border-color: #ffd700bb;
+    box-shadow: 0 8px 32px var(--color-shadow-gold-light), 0 4px 16px var(--color-shadow-black-strongest);
+    border-color: var(--color-border-strong);
     z-index: 10;
 }
 
@@ -112,7 +115,7 @@
     margin-bottom: 0.1em;
     word-break: break-word;
     letter-spacing: 0.3px;
-    text-shadow: 0 2px 8px #0008;
+    text-shadow: 0 2px 8px var(--color-shadow-black-strongest);
     line-height: 1.2;
     padding-bottom: 0.1em;
 }
@@ -146,16 +149,16 @@
 
 .community-card-playstyle-badge {
     display: inline-block;
-    background: linear-gradient(90deg, #2a2342 0%, #205080 100%);
+    background: linear-gradient(90deg, var(--color-info-bg) 0%, var(--color-info-dark) 100%);
     color: var(--color-accent-primary);
     border-radius: 7px;
     padding: 0.18em 1.2em;
     font-size: 1.13em;
     font-weight: bold;
     letter-spacing: 0.35px;
-    box-shadow: 0 4px 16px #20508088, 0 2px 8px #0002;
-    border: 2.5px solid #205080;
-    text-shadow: 0 1px 2px #2a2342;
+    box-shadow: 0 4px 16px var(--color-shadow-blue), 0 2px 8px var(--color-shadow-black);
+    border: 2.5px solid var(--color-info-dark);
+    text-shadow: 0 1px 2px var(--color-info-bg);
     text-transform: uppercase;
     margin-bottom: 0.18em;
     margin-top: 0;
@@ -187,7 +190,7 @@
 }
 
 .community-card-cat {
-    background: #22304a;
+    background: var(--color-card-bg);
     color: var(--color-accent-primary);
     border-radius: var(--border-radius-sm);
     padding: 0.25em 0.8em;
@@ -195,12 +198,12 @@
     font-weight: bold;
     margin-bottom: 0.2em;
     letter-spacing: 0.1px;
-    box-shadow: 0 2px 8px #22304a44, 0 1px 2px #0002;
+    box-shadow: 0 2px 8px var(--color-card-bg)44, 0 1px 2px var(--color-shadow-black);
     transition: background 0.18s, color 0.18s, border 0.18s;
     display: inline-block;
     margin-right: 0.2em;
     margin-top: 0.1em;
-    border: 2px solid #22304a;
+    border: 2px solid var(--color-card-border);
     text-shadow: none;
     height: 1.5em;
     line-height: 1;
@@ -220,28 +223,28 @@
 }
 
 .discord-btn {
-    background: linear-gradient(90deg,#5865F2 60%,#4fa3ff 100%);
-    color: #fff;
+    background: linear-gradient(90deg, var(--color-info-dark) 60%, var(--color-info) 100%);
+    color: #e4e4e4;
     font-weight: bold;
     font-size: 1em;
     padding: 0.7em 1.4em;
     border-radius: 7px;
     text-decoration: none;
-    box-shadow: var(--box-shadow-sm), 0 2px 12px #4fa3ff33;
+    box-shadow: var(--box-shadow-sm), 0 2px 12px var(--color-shadow-blue-light);
     transition: background 0.18s, color 0.18s, box-shadow 0.18s, border 0.18s;
     display: inline-block;
     cursor: pointer;
     outline: none;
-    border: 2px solid #5865F2;
+    border: 2px solid var(--color-info-dark);
     letter-spacing: 0.2px;
     margin-top: 0.1em;
 }
 
 .discord-btn:hover, .discord-btn:focus {
-    background: linear-gradient(90deg,#4fa3ff 60%,#5865F2 100%);
+    background: linear-gradient(90deg, var(--color-info) 60%, var(--color-info-dark) 100%);
     color: var(--color-accent-primary);
     border-color: var(--color-accent-primary);
-    box-shadow: 0 4px 16px #5865f288, 0 2px 8px #0003;
+    box-shadow: 0 4px 16px var(--color-info-dark)88, 0 2px 8px var(--color-shadow-black-strong);
     text-decoration: underline;
 }
 
@@ -258,11 +261,11 @@
 /* Title border effects similar to submit categories */
 #tab-content-communities h2,
 #tab-content-submit h2 {
-    border: 2px solid #ffd580;
+    border: 2px solid var(--color-border-secondary);
     border-radius: 8px;
     padding: 0.8em 1.2em;
-    background: #1a1e23;
-    color: #ffd580;
+    background: var(--color-bg-highlight);
+    color: var(--color-border-secondary);
     font-weight: bold;
     font-size: 1.3em;
     margin: 0 0 1.5em 0;
@@ -274,7 +277,7 @@
 
 #communities-pagination {
     text-align: center;
-    margin: 2em 0 90px 0;
+    margin: 2em 0 40px 0;
     padding-bottom: 2em;
     position: relative;
     z-index: 1;
@@ -283,28 +286,4 @@
 #communities-pagination button {
     position: relative;
     z-index: 2;
-}
-
-/* Responsive grid adjustments */
-@media (max-width: 1400px) {
-    #communities-list {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 1000px) {
-    #communities-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    #communities-list {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-    }
-    
-    .community-card {
-        padding: var(--spacing-md);
-    }
 }

@@ -144,7 +144,6 @@ function createCategoryGroup(categoryKey, categoryData) {
 
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    checkbox.name = 'entry.1210572624';
     checkbox.value = option.value;
     checkbox.style.cssText = 'margin-right: 0.5em;';
     
@@ -192,11 +191,11 @@ function handleCategoryKeydown(event) {
 function updateRPDependentCategories() {
   const rpFocused = document.getElementById('submit-rp-focused');
   const isEnabled = rpFocused?.checked;
-  
+
   // Find all RP-dependent checkboxes and groups
   const rpDependentInputs = document.querySelectorAll('.rp-dependent');
   const rpDependentGroups = [];
-  
+
   // Get unique groups
   rpDependentInputs.forEach(input => {
     const group = input.closest('.submit-category-group');
@@ -213,16 +212,12 @@ function updateRPDependentCategories() {
     }
   });
 
-  // Update group visual state
+  // Update group visual state using CSS class
   rpDependentGroups.forEach(group => {
     if (!isEnabled) {
-      group.style.opacity = '0.5';
-      group.style.filter = 'grayscale(0.7)';
-      group.style.pointerEvents = 'none';
+      group.classList.add('rp-disabled');
     } else {
-      group.style.opacity = '';
-      group.style.filter = '';
-      group.style.pointerEvents = '';
+      group.classList.remove('rp-disabled');
     }
   });
 }
@@ -250,7 +245,69 @@ function initializeSubmitCategories() {
   }
 }
 
+function getCommunityName() {
+  // Get the Community Name field by its actual name attribute from the HTML
+  const nameInput = document.querySelector('input[name="entry.1241345937"]');
+  return nameInput && nameInput.value.trim() ? nameInput.value.trim() : '';
+}
+
+function prependNameToAllFields() {
+  const communityName = getCommunityName();
+  if (!communityName) return;
+
+  // Prepend name to Description
+  const descInput = document.querySelector('textarea[name="entry.1255750588"]');
+  if (descInput && !descInput.value.startsWith(`[${communityName}] `)) {
+    descInput.value = `[${communityName}] ` + descInput.value;
+  }
+
+  // Prepend name to Discord Link
+  const discordInput = document.querySelector('input[name="entry.533451195"]');
+  if (discordInput && discordInput.value && !discordInput.value.startsWith(`[${communityName}] `)) {
+    discordInput.value = `[${communityName}] ` + discordInput.value;
+  }
+
+  // Prepend name to Community Banner
+  const bannerInput = document.querySelector('input[name="entry.901362015"]');
+  if (bannerInput && bannerInput.value && !bannerInput.value.startsWith(`[${communityName}] `)) {
+    bannerInput.value = `[${communityName}] ` + bannerInput.value;
+  }
+}
+
+function getSelectedCategoriesString() {
+  // Get all checked checkboxes for categories
+  const checked = Array.from(document.querySelectorAll('.submit-category-group input[type="checkbox"]:checked'));
+  return checked.map(cb => cb.value).join(', ');
+}
+
 function submitCommunityForm() {
+  // Prepend name to all other fields before submission
+  prependNameToAllFields();
+
+  // Prepend name to the categories string
+  const communityName = getCommunityName();
+  let bundledString = getSelectedCategoriesString();
+  if (communityName) {
+    bundledString = `[${communityName}] ` + bundledString;
+  }
+
+  // Before showing message, set the hidden input value
+  let hiddenInput = document.querySelector('input[type="hidden"][name="entry.1210572624"]');
+  if (!hiddenInput) {
+    // If not present, create and append to the form
+    const form = document.getElementById('submit-community-form');
+    hiddenInput = document.createElement('input');
+    hiddenInput.type = 'hidden';
+    hiddenInput.name = 'entry.1210572624';
+    form.appendChild(hiddenInput);
+  }
+  hiddenInput.value = bundledString;
+
+  // Remove any stray category checkboxes with name="entry.1210572624" (cleanup for legacy)
+  document.querySelectorAll('.submit-category-group input[type="checkbox"][name="entry.1210572624"]').forEach(cb => {
+    cb.removeAttribute('name');
+  });
+
   const msg = document.getElementById('submit-community-message');
   msg.textContent = "Thank you for your submission! Your community will be reviewed.";
   msg.style.color = "#6be672";
@@ -261,7 +318,9 @@ function submitCommunityForm() {
       form.reset();
       updateRPDependentCategories();
     }
-  }, 1000);
+    // Scroll to top after submission
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 10);
   
   return true;
 }

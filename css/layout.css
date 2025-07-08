@@ -8,7 +8,7 @@
     gap: var(--spacing-xl);
     width: 100.5vw;
     max-width: 100.5vw;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     position: relative;
 }
 
@@ -22,7 +22,7 @@
     grid-template-rows: auto 1fr auto;
     min-height: 100vh;
     width: 100vw;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     background: var(--color-bg-primary);
 }
 
@@ -52,7 +52,7 @@
 
 #main-header h1 {
     margin: 0;
-    font-size: 2rem;
+    font-size: 2em;
     color: var(--color-accent-primary);
     text-shadow: 0 2px 8px #0008;
 }
@@ -209,6 +209,7 @@
     right: 0;
     bottom: 0;
     z-index: 100;
+    font-size: 0.9em;
 }
 
 .footer-content {
@@ -222,27 +223,55 @@
     font-size: 0.9em;
 }
 
-/* Responsive Design */
-@media (max-width: 1200px) {
-    #app-container {
-        grid-template-areas: 
-            "header"
-            "main"
-            "sidebar"
-            "footer";
-        grid-template-columns: 1fr;
-        grid-template-rows: auto 1fr auto auto;
-    }
-    
-    #sidebar {
-        top: 120px;
-        width: 100vw;
-        left: 0;
-        right: 0;
-        border-left: none;
-        border-top: 2.5px solid #ffd70033;
-        max-height: calc(50vh - 64px);
-    }
+/* PREVIEW Badge */
+.preview-badge {
+    position: absolute;
+    right: 440px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #e53935;
+    font-size: 1.1em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    background: rgba(255,255,255,0.07);
+    padding: 0.2em 0.9em;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px #0002;
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* Ensure sidebar content is visible */
+#description-panel,
+#ranking-panel {
+    color: var(--color-text-primary);
+    background: var(--color-bg-secondary);
+}
+
+#ranking-panel h2 {
+    color: var(--color-accent-primary);
+    margin-top: 0;
+}
+
+/* Adjust main content to account for fixed sidebar */
+#app-container:not(.communities-active) #main-content {
+    margin-right: 420px;
+}
+
+#tab-content-communities,
+#tab-content-about,
+#tab-content-submit {
+    border-left: none; /* Remove left border to eliminate the slim black area */
+    border-right: 2.5px solid #ffd70033;
+}
+
+/* WIP Disclaimer */
+.wip-disclaimer {
+    color: #e53935;
+    font-weight: bold;
+    margin-top: 0.3em;
+    font-size: 1em;
+    letter-spacing: 0.02em;
 }
 
 @media (max-width: 768px) {
@@ -304,30 +333,3 @@
     border-bottom: none;
     flex: 1;
 }
-
-/* Remove ranking toggle button styles */
-
-/* Ensure sidebar content is visible */
-#description-panel,
-#ranking-panel {
-    color: var(--color-text-primary);
-    background: var(--color-bg-secondary);
-}
-
-#ranking-panel h2 {
-    color: var(--color-accent-primary);
-    margin-top: 0;
-}
-
-/* Adjust main content to account for fixed sidebar */
-#app-container:not(.communities-active) #main-content {
-    margin-right: 420px;
-}
-
-#tab-content-communities,
-#tab-content-about,
-#tab-content-submit {
-    border-left: none; /* Remove left border to eliminate the slim black area */
-    border-right: 2.5px solid #ffd70033;
-}
-

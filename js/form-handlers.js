@@ -33,13 +33,9 @@ function updateSubmitRPCategoriesVisibility() {
   rpGroups.forEach(function(group) {
     if (group) {
       if (!enabled) {
-        group.style.opacity = "0.5";
-        group.style.pointerEvents = "none";
-        group.style.filter = "grayscale(0.7)";
+        group.classList.add('rp-disabled');
       } else {
-        group.style.opacity = "";
-        group.style.pointerEvents = "";
-        group.style.filter = "";
+        group.classList.remove('rp-disabled');
       }
     }
   });
